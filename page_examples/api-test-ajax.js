@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
         url: "http://" + window.location.hostname + "/api/examples/example_api.php", // default
-        /*url: "http://" + window.location.hostname + "/431/431W-Semester-Project/api/examples/example_api.php", */ //Chuck
+        /*url: "http://" + window.location.hostname + "/431/431W-Semester-Project/api/examples/example_api.php",*/ //Chuck
 
         dataType: "json",
         success: function(data) {
