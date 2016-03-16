@@ -15,20 +15,20 @@ if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
 // Put data in variables
-$item_id = 5;//$_POST['item_id'];
-$star_rating = 4;//$_POST['star_rating'];
-$description = 'Loved It!';//$_POST['description'];
+$item_id = $_POST['item_id'];
+$star_rating = $_POST['star_rating'];
+$description = $_POST['description'];
 
 // Check for Data
 if(!($item_id && $star_rating)) {
-	SendSingleError(HTTP_INTERNAL_ERROR, $_POST['item_id'], ERRTXT_ID_NOT_FOUND);
+	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
 
 	$query = "INSERT INTO ratings VALUES(0, $item_id, $star_rating, '". $description ."', CURRENT_DATE())";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
-    	echo json_encode($result);
+    	echo json_encode(TRUE);
     	exit;
     }
 }
