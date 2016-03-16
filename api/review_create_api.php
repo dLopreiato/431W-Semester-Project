@@ -24,7 +24,6 @@ if(!($item_id && $star_rating)) {
 	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
-
 	$query = "INSERT INTO ratings VALUES(0, $item_id, $star_rating, '". $description ."', CURRENT_DATE())";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
@@ -33,6 +32,6 @@ if(!($item_id && $star_rating)) {
     }
 }
 
-SendSingleError(HTTP_INTERNAL_ERROR, /*'query failed'*/$query, ERRTXT_FAILED);
+SendSingleError(HTTP_INTERNAL_ERROR, 'query failed', ERRTXT_FAILED);
 
 ?>
