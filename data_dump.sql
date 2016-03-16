@@ -290,6 +290,37 @@ LOCK TABLES `registered_users` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `rent_transactions`
+--
+
+DROP TABLE IF EXISTS `rent_transactions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `rent_transactions` (
+  `username` char(20) NOT NULL,
+  `rentable_id` int(11) NOT NULL,
+  `serial_number` int(11) NOT NULL,
+  `time_rented` datetime DEFAULT NULL,
+  `time_due` datetime DEFAULT NULL,
+  `returned` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`username`,`rentable_id`,`serial_number`),
+  KEY `rentable_id` (`rentable_id`,`serial_number`),
+  CONSTRAINT `rent_transactions_ibfk_1` FOREIGN KEY (`username`) REFERENCES `registered_users` (`username`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `rent_transactions_ibfk_2` FOREIGN KEY (`rentable_id`) REFERENCES `rentable_items` (`rentable_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `rent_transactions_ibfk_3` FOREIGN KEY (`rentable_id`, `serial_number`) REFERENCES `physical_rentables` (`rentable_id`, `serial_number`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `rent_transactions`
+--
+
+LOCK TABLES `rent_transactions` WRITE;
+/*!40000 ALTER TABLE `rent_transactions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rent_transactions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `rentable_items`
 --
 
@@ -420,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-16 10:54:39
+-- Dump completed on 2016-03-16 11:26:33
