@@ -107,7 +107,7 @@ DROP TABLE IF EXISTS `bids`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bids` (
-  `amount` float DEFAULT NULL,
+  `amount` decimal(10,0) DEFAULT NULL,
   `bid_id` int(11) NOT NULL DEFAULT '0',
   `time` datetime DEFAULT NULL,
   `username` char(20) DEFAULT NULL,
@@ -331,8 +331,8 @@ CREATE TABLE `rentable_items` (
   `rentable_id` int(11) NOT NULL DEFAULT '0',
   `description` text,
   `title` char(64) DEFAULT NULL,
-  `rental_price` double DEFAULT NULL,
-  `collateral_price` double DEFAULT NULL,
+  `rental_price` decimal(10,0) DEFAULT NULL,
+  `collateral_price` decimal(10,0) DEFAULT NULL,
   `rental_time_unit` int(11) DEFAULT NULL,
   `picture` char(255) DEFAULT NULL,
   `category_id` int(11) DEFAULT NULL,
@@ -362,7 +362,7 @@ DROP TABLE IF EXISTS `sales`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sales` (
-  `amount` float DEFAULT NULL,
+  `amount` decimal(10,0) DEFAULT NULL,
   `sale_id` int(11) NOT NULL DEFAULT '0',
   `time` datetime DEFAULT NULL,
   `username` char(20) NOT NULL,
@@ -451,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-16 11:26:33
+-- Dump completed on 2016-03-16 11:32:07
