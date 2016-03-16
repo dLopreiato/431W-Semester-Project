@@ -15,21 +15,28 @@ if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
 // Put data in variables
-$item_id = $_POST['item_id'];
-$star_rating = $_POST['star_rating'];
-$description = $_POST['description'];
+$item_id = $_GET['item_id'];
 
 // Check for Data
-if(!($item_id && $star_rating)) {
+if(!($item_id)) {
 	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
-	// Write data to database
-	$query = "INSERT INTO ratings VALUES(0, $item_id, $star_rating, '". $description ."', CURRENT_DATE())";
-	if($databaseConnection->query($query)) { // If query was successful
-		header(HTTP_OK);
-    	echo json_encode(TRUE);
+	// get data from database
+	$query = "SELECT star_ranking, description FROM ratings WHERE item_id = $item_id";
+	$data = $databaseConnection->query($query);
+    if ($data->num_rows > 0) {
+    	header(HTTP_OK);
+    	echo json_encode($data);
+	    // output data of each row
+	    /*while($row = $data->fetch_assoc()) {
+	        echo $row["star_ranking"]. " Stars: " . $row["description"] . "<br>";
+	    }*/
+	    exit;
+	} else if($data != "") {
+	    header(HTTP_OK);
+    	echo json_encode("no reviews");
     	exit;
-    }
+	}
 }
 
 SendSingleError(HTTP_INTERNAL_ERROR, 'query failed', ERRTXT_FAILED);
