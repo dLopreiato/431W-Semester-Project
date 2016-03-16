@@ -17,17 +17,17 @@ if ($databaseConnection->connect_errno != 0) {
 
 // Check for Data
 if(!($_POST["item_id"] && $_POST["star_rating"])) {
-	die ("One or more fields was incomplete, please go back and try again.");
+	SendSingleError(HTTP_INTERNAL_ERROR, 'one or more missing fields', ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
 	$query = "INSERT INTO _table_
 		VALUES('0', $_POST['item_id'] && $_POST['star_rating'] && $_POST['description'], (SELECT GETDATE()))";
 	$result = mysqli_query($databaseConnection, $query, MYSQLI_STORE_RESULT);
-	if($result)
-		echo("Review successfully posted!");
-		return $result;
-	else
-		echo("Error writing to database, please try again. If issue persists, contact the administrator.");
-		return $result;
+	if($result) // If query was successful
+		header(HTTP_OK);
+    	echo json_encode($result);
+    	exit;
+	else // Otherwise send error
+		SendSingleError(HTTP_INTERNAL_ERROR, 'query failed', ERRTXT_FAILED);
 }
 ?>
