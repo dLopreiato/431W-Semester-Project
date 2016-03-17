@@ -1,7 +1,7 @@
 <?php
 /*
 Input (3 POST parameters): item_id, star_rating, description
-Process: Inserts inpuy into the ratings table
+Process: Inserts input into the ratings table
 Output: A boolean variable that is true on success (on failure returns the error)
 */
 require_once('../lib/config.php');
@@ -15,9 +15,9 @@ if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
 // Put data in variables
-$item_id = $_POST['item_id'];
-$star_rating = $_POST['star_rating'];
-$description = $_POST['description'];
+$item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
+$star_rating = (isset($_POST['star_rating'])) ? ($_POST['star_rating']) : (false);
+$description = (isset($_POST['description'])) ? ($_POST['description']) : (false);
 
 // Check for Data
 if(!($item_id && $star_rating)) {
@@ -27,11 +27,12 @@ if(!($item_id && $star_rating)) {
 	$query = "INSERT INTO ratings VALUES(0, $item_id, $star_rating, '". $description ."', CURRENT_DATE())";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
+		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
     }
 }
 
-SendSingleError(HTTP_INTERNAL_ERROR, 'query failed', ERRTXT_FAILED);
+SendSingleError(HTTP_INTERNAL_ERROR, 'php failed', ERRTXT_FAILED);
 
 ?>
