@@ -4,7 +4,7 @@
 define('ERRTXT_DBCONN_FAILED', 'A connection error has occurred. Contact the administrator.');
 
 // error for unauthorized user
-define('ERRTXT_UNATHORIZED', 'You are unauthorized to perform this action. Request permission from the administrator to continue.');
+define('ERRTXT_UNAUTHORIZED', 'You are unauthorized to perform this action. Request permission from the administrator to continue.');
 
 // error for when a variable is not set that needs to be set
 define('ERRTXT_UNSETVARIABLE', 'A fatal error has occurred on this page. Contact the administrator.');
