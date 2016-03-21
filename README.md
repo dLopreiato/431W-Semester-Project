@@ -26,3 +26,9 @@ define("MYSQL_DATE_FORMAT", 'Y-m-d H:i:s');
 ?>
 
 ```
+
+Create a file called "config.js" in the _js_ directory and paste the following into it, with the correct fields.
+
+```js
+var ROOT_DIRECTORY = "";
+```
