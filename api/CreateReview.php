@@ -21,15 +21,18 @@ $description = (isset($_POST['description'])) ? ($_POST['description']) : (false
 
 // Check for Data
 if(!($item_id && $star_rating)) {
-	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
+	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
-	$query = "INSERT INTO ratings VALUES(0, $item_id, $star_rating, '". $description ."', CURRENT_DATE())";
+	$query = "INSERT INTO ratings (item_id, star_ranking, description, review_date) VALUES($item_id, $star_rating, '". $description ."', CURRENT_DATE())";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
+    }
+    else {
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to insert new rating into database', ERRTXT_FAILED_QUERY);
     }
 }
 
