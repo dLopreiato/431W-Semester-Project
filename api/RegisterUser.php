@@ -12,7 +12,7 @@ require_once('../lib/api_error_functions.php');
 // Set Up the Database Connection
 $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
 if ($databaseConnection->connect_errno != 0) {
-    SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
+	SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
 // Put data in variables
 $username = (isset($_POST['username'])) ? ($_POST['username']) : (false);
@@ -26,18 +26,18 @@ $annual_income = (isset($_POST['annual_income'])) ? ($_POST['annual_income']) : 
 
 // Check for Data
 if(!($username && $password && $email && $name && $phone_number && $age && $gender && $annual_income)) {
-	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_UNSETVARIABLE);
+	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	
 	// Make sure we don't already have someone with that username
 	$query = "SELECT username FROM registered_users WHERE username = '$username' ";
 	$data = $databaseConnection->query($query);
-    if ($data->num_rows > 0) {
-		SendSingleError(HTTP_INTERNAL_ERROR, "someone else already has this username", "Sorry, but someone else has already claimed this username.  Please try again with a new username. ");
+	if ($data->num_rows > 0) {
+		SendSingleError(HTTP_BAD_REQUEST, "someone else already has this username", "Sorry, but someone else has already claimed this username.  Please try again with a new username. ");
 	}
 	else{
 		// Write data to database
-		$query = "INSERT INTO registered_users VALUES('$username', '$name', '$password', '$email', '$phone_number', '$age', '$annual_income')";
+		$query = "INSERT INTO registered_users (username, name, password, email, phone_number, age, annual_income) VALUES('$username', '$name', '$password', '$email', '$phone_number', '$age', '$annual_income')";
 		if($databaseConnection->query($query)) { // If query was successful
 			header(HTTP_OK);
 			header(API_RESPONSE_CONTENT);
