@@ -22,7 +22,7 @@ $password = (isset($_GET['password'])) ? ($_GET['password']) : (false);
 
 // Check for Data
 if(!($password && $username)) {
-	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
+	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	// get data from database
 	$query = "SELECT username, password FROM registered_users WHERE username = '$username' AND password = '$password'";

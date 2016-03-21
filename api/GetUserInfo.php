@@ -1,42 +1,36 @@
 <?php
 /*
-Input: no parameters
-Process: Gets the current active user's name and email from the session data
-Output: Returns current active user's username, name and email,  (returns false if no user is currently logged in)
+Input (1 GET parameter): username
+Process: Gets the user's info from the registered_users table
+Output: Returns an associative array of the user's info (sends single error on failure)
 */
 require_once('../lib/config.php');
 require_once('../lib/http_headers.php');
 require_once('../lib/api_common_error_text.php');
 require_once('../lib/api_error_functions.php');
 
-session_start();
-
 // Set Up the Database Connection
 $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
 if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
-
 // Put data in variables
-$username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
+$username = (isset($_GET['username'])) ? ($_GET['username']) : (false);
 
 // Check for Data
 if(!($username)) {
-	header(HTTP_OK);
-	header(API_RESPONSE_CONTENT);
-    echo json_encode(FALSE);
-	exit;
+	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	// get data from database
-	$query = "SELECT username, name, email FROM registered_users WHERE username = '$username'";
+	$query = "SELECT * FROM registered_users WHERE username = '$username'";
 	$data = $databaseConnection->query($query);
-	 if ($data->num_rows > 0) {
+	if ($row = $data->fetch_assoc()){
     	header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
-    	echo json_encode($data->fetch_assoc());
+    	echo json_encode($row);
 	    exit;
 	} else  {
-		SendSingleError(HTTP_INTERNAL_ERROR, 'unknown user', ERRTXT_FAILED);	
+	   SendSingleError(HTTP_BAD_REQUEST, 'user not found', ERRTXT_FAILED_QUERY);
 	}
 }
 
