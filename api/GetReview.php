@@ -19,9 +19,9 @@ $item_id = (isset($_GET['item_id'])) ? ($_GET['item_id']) : (false);
 
 // Check for Data
 if(!($item_id)) {
-	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
+	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
-	// get data from database
+	// Get data from database
 	$query = "SELECT star_ranking, description FROM ratings WHERE item_id = $item_id";
 	$data = $databaseConnection->query($query);
     if ($data->num_rows > 0) {
@@ -38,7 +38,9 @@ if(!($item_id)) {
 		header(API_RESPONSE_CONTENT);
     	echo json_encode("no reviews");
     	exit;
-	}
+	} else {
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to retrieve reviews from database', ERRTXT_FAILED_QUERY);
+    }
 }
 
 SendSingleError(HTTP_INTERNAL_ERROR, 'php failed', ERRTXT_FAILED);

@@ -30,8 +30,7 @@ if(!($item_id && $star_rating)) {
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
-    }
-    else {
+    } else {
         SendSingleError(HTTP_INTERNAL_ERROR, 'failed to insert new rating into database', ERRTXT_FAILED_QUERY);
     }
 }
