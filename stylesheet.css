@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    width: 100%;
+    min-height: 100vh;
+    background-color: yellow;	
+}
+
+body {
+    width: 100%;
+    background: hotpink; /* For browsers that do not support gradients */
+  	background: -webkit-linear-gradient(left top, hotpink, yellow); /* For Safari 5.1 to 6.0 */
+  	background: -o-linear-gradient(bottom right, hotpink, yellow); /* For Opera 11.1 to 12.0 */
+  	background: -moz-linear-gradient(bottom right, hotpink, yellow); /* For Firefox 3.6 to 15 */
+  	background: linear-gradient(to bottom right, hotpink, yellow); /* Standard syntax */
+    min-height: 100vh; 
+}
+
+main{
+	min-height: calc(100vh - 2em); /* this leaves space for the sticky footer */
+}
+
+footer {
+    /* for debugging, a gray background lets us see the footer */
+	min-height:2em;
+	text-align: center;
+	color: grey;
+}
+
+
+#web-title{
+color: hotpink;
+}
+
+.css-typing
+{
+	background-color: black;
+	color: hotpink;
+    width: 68%;
+    margin-top: 21px;
+    white-space:nowrap;
+    overflow:hidden;
+    font-size: 6vw;
+    -webkit-animation: type 5s steps(50, end);
+    animation: type 5s steps(50, end);
+}
+
+@keyframes type{
+    from { width: 0; }
+}
+
+@-webkit-keyframes type{
+    from { width: 0; }
+}
+
+
