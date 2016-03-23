@@ -1,8 +1,8 @@
 <?php
 /*
 Input: no parameters
-Process: Gets everything from the badges table
-Output: Returns all the info from the badges table, error if no badges exist
+Process: Gets everything from the categories table
+Output: Returns all the info from the categories table, error if no categories exist
 */
 require_once('../lib/config.php');
 require_once('../lib/http_headers.php');
@@ -16,7 +16,7 @@ if ($databaseConnection->connect_errno != 0) {
 }
 
 // get data from database
-$query = "SELECT * FROM badges";
+$query = "SELECT * FROM categories";
 $data = $databaseConnection->query($query);
 
 if ($data->num_rows > 0) {
@@ -32,7 +32,7 @@ if ($data->num_rows > 0) {
 	exit;
 	
 } else  {
-	SendSingleError(HTTP_INTERNAL_ERROR, 'no badges exist', ERRTXT_FAILED);	
+	SendSingleError(HTTP_INTERNAL_ERROR, 'no categories exist', ERRTXT_FAILED);	
 }
 
 SendSingleError(HTTP_INTERNAL_ERROR, 'php failed', ERRTXT_FAILED);
