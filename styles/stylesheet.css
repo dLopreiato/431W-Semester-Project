@@ -55,4 +55,6 @@ color: hotpink;
     from { width: 0; }
 }
 
-
+.error-display {
+    background-color: #f00;
+}

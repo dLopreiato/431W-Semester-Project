@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="styles/stylesheet.css">
+    <title>Login | #90sKidsAreUs</title>
+</head>
+
+<body>
+<main>
+    <div id = "web-title">.</div> <!-- Weird fix I had to make, do not delete -->
+    <h1 class="css-typing">#90s Kids R Us</h1>
+
+    <div id="error-view" class="error-display">
+    </div> <!-- end id=error-view -->
+
+    <div id="main-content">
+        <h1> Login </h1>
+        Username: <input type="text" name="username" required>
+        <br>
+        Password: <input type="password" name="password" required>
+        <br>
+        <button onclick="submitLoginCredentials();">Login</button>
+    </div> <!-- end id=main-content -->
+</main>
+<footer>
+    <p>Made by The Hateful 8 &#169; 2016</p>
+</footer>
+
+<!-- jQuery scripts -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script> 
+<script src="js/config.js"></script>
+<script src="js/login-ajax.js"></script>
+</body>
+</html>
