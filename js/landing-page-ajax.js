@@ -7,7 +7,10 @@ function setActiveUserInfo() {
         url: PROTOCOL + ROOT_DIRECTORY + '/api/GetActiveUserInfo.php',
         dataType: 'json',
         success: function(data) {
-            $('#greeting').append('Hello, ' + data['name'] + '!');
+            if (data != false) {
+                $('#greeting').html('');
+                $('#greeting').append('Hello, ' + data['name'] + '!');
+            }
         },
         error: function(xhr, ajaxOptions, thrownError) {
             var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
