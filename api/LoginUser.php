@@ -25,7 +25,7 @@ if(!($password && $username)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	// get data from database
-	$query = "SELECT username, password FROM registered_users WHERE username = '$username' AND password = '$password'";
+	$query = "SELECT username, password FROM registered_users WHERE username = '$username' AND BINARY password = '$password'";
 	$data = $databaseConnection->query($query);
     if ($data->num_rows > 0) {
 		$_SESSION['username']  = $username;
