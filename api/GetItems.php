@@ -23,8 +23,8 @@ function getChildCategoryItems($databaseConnection, $category_id) {
 
 		if ($data->num_rows > 0) {
 				while ($row =$data->fetch_assoc()){
-					$result[] = getItemsInCategory($databaseConnection, $row["category_id"]);
-					$result[] = getChildCategoryItems($databaseConnection, $row["category_id"]);
+					$result = array_merge($result, getItemsInCategory($databaseConnection, $row["category_id"]));
+					$result = array_merge($result, getChildCategoryItems($databaseConnection, $row["category_id"]));
 				}
 		}
 		return $result;
@@ -89,8 +89,8 @@ if(!($category_id)) {
 	
 	$result = array();
 
-	$result[] = getItemsInCategory($databaseConnection, $category_id);	
-	$result[] = getChildCategoryItems($databaseConnection, $category_id);
+	$result = array_merge($result, getItemsInCategory($databaseConnection, $category_id));	
+	$result = array_merge($result, getChildCategoryItems($databaseConnection, $category_id));
 		
 	header(HTTP_OK);
 	header(API_RESPONSE_CONTENT);
