@@ -1,7 +1,7 @@
 <?php
 /*
 Input (4 GET parameter): item_id, serial_number, address_id, card_number
-Process: Username taken from active user, sets on_shelf set to 0, new rent transaction created in rental_transactions table
+Process: Username taken from active user, sets on_shelf to 0, new rent transaction created in rental_transactions table
 Output: True on success, error on failure
 */
 require_once('../lib/config.php');
@@ -34,18 +34,24 @@ if(!($username)) {
 	// Should we do error checking her to make sure it's not already rented? aka make sure on_shelf is one?
 	$query = "UPDATE rentables SET on_shelf = 0 WHERE item_id = '$item_id' AND serial_number = '$serial_number' ";	
 	if($databaseConnection->query($query)) { // If query was successful
-		$query = "INSERT INTO rental_transaction (item_id, serial_number, username, rental_date, address_id) VALUES('$item_id', '$serial_number', '$username', now(), '$address_id')";	
-		if($databaseConnection->query($query)) { // If query was successful
-				header(HTTP_OK);
-				header(API_RESPONSE_CONTENT);
-				echo json_encode(TRUE);
-				exit;
+		$query = "SELECT rental_in_days FROM rentables WHERE item_id = '$item_id' AND serial_number = '$serial_number' ";
+		$data = $databaseConnection->query($query);
+		if ($data->num_rows > 0) {
+			$row = $data->fetch_assoc();
+			$due_date = date('y:m:d', time() + ($row["rental_in_days"]*86400));
+			$query = "INSERT INTO rental_transaction (item_id, serial_number, rented_out_to_username, rental_date, due_date, address_id) VALUES('$item_id', '$serial_number', '$username', now(), '$due_date', '$address_id')";	
+			if($databaseConnection->query($query)) { // If query was successful
+					header(HTTP_OK);
+					header(API_RESPONSE_CONTENT);
+					echo json_encode(TRUE);
+					exit;
+			} else{
+				SendSingleError(HTTP_INTERNAL_ERROR, 'failed to enter the rental transaction into the database', ERRTXT_FAILED_QUERY);
+			}
+		}else{
+			SendSingleError(HTTP_BAD_REQUEST, "this item does not have a rental time specified", ERRTXT_UNSETVARIABLE);
 		}
-		else{
-			SendSingleError(HTTP_INTERNAL_ERROR, 'failed to enter the rental transaction into the database', ERRTXT_FAILED_QUERY);
-		}
-	}
-	else{
+	}else{
 		SendSingleError(HTTP_INTERNAL_ERROR, 'failed to update rental status in database', ERRTXT_FAILED_QUERY);
 	}
 }
