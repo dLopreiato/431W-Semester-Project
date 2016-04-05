@@ -1,7 +1,7 @@
 <?php
 /*
-Input (3 POST parameters): item_id, reserve_price, number_in_stock
-Process: Inserts input into the auctioned_by table
+Input (4 POST parameters): item_id, serial_number, rental_time_unit, price_listing
+Process: Inserts input into the rentables table
 Output: A boolean variable that is true on success (on failure returns the error)
 */
 require_once('../lib/config.php');
@@ -19,23 +19,24 @@ if ($databaseConnection->connect_errno != 0) {
 // Put data in variables
 $item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
 $username = $_SESSION['username'];
-$reserve_price = (isset($_POST['reserve_price'])) ? ($_POST['reserve_price']) : (false);
-$number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
+$serial_number = (isset($_POST['serial_number'])) ? ($_POST['serial_number']) : (false);
+$rental_time_unit = (isset($_POST['rental_time_unit'])) ? ($_POST['rental_time_unit']) : (false);
+$price_listing = (isset($_POST['price_listing'])) ? ($_POST['price_listing']) : (false);
 
 // Check for Data
-if(!($item_id && $reserve_price && $number_in_stock)) {
+if(!($item_id && $serial_number && $rental_time_unit && $price_listing)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Check ownership
 	// Write data to database
-	$query = "INSERT INTO auctioned_by (item_id, username, reserve_price, number_in_stock) VALUES($item_id, '". $username . "', '" . $reserve_price . "', $number_in_stock)";
+	$query = "INSERT INTO rentables (item_id, serial_number, rental_in_days, rental_price, on_shelf, seller_username) VALUES($item_id, '" . $serial_number . "', '" . $rental_time_unit . "', '" . $price_listing . "', 1, '". $username . "',)";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
     } else {
-        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to post item for auction: ' . $query, ERRTXT_FAILED_QUERY);
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to post item for rental: ' . $query, ERRTXT_FAILED_QUERY);
     }
 }
 

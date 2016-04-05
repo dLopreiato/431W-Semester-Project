@@ -1,7 +1,7 @@
 <?php
 /*
-Input (3 POST parameters): item_id, star_rating, description
-Process: Inserts input into the ratings table
+Input (3 POST parameters): item_id, listed_price, number_in_stock
+Process: Inserts input into the sold_by table
 Output: A boolean variable that is true on success (on failure returns the error)
 */
 require_once('../lib/config.php');
