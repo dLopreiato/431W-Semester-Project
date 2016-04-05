@@ -23,22 +23,20 @@ $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 $amount = (isset($_GET['amount'])) ? ($_GET['amount']) : (false);
 $item_id = (isset($_GET['item_id'])) ? ($_GET['item_id']) : (false);
 $card_number = (isset($_GET['card_number'])) ? ($_GET['card_number']) : (false);
-$sent = (isset($_GET['sent'])) ? ($_GET['sent']) : (false);
-$received = (isset($_GET['received'])) ? ($_GET['received']) : (false);
 
 // Check for Data
-if(!($username)) {
+if(!($username && $amount && $item_id && $card_number)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
-	$query = "INSERT INTO sales (amount, time, username, item_id, card_number, sent, received) VALUES(amount, CURRENT_TIME(), username, item_id, card_number, sent, received)";
+	$query = "INSERT INTO sales (amount, `time`, username, item_id, card_number) VALUES ($amount, NOW(), '$username', $item_id, $card_number)";
 	if($databaseConnection->query( $query)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
     } else {
-        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to complete purchase transaction.', ERRTXT_FAILED_QUERY);
+        SendSingleError(HTTP_INTERNAL_ERROR, /*'failed to complete purchase transaction.'*/$databaseConnection->error, ERRTXT_FAILED_QUERY);
     }
 }
 
