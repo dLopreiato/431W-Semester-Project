@@ -49,62 +49,41 @@
     </nav>
 
     <div class="container">
+	<div id="error-view">
+	</div>
         <h1>Manage My Cards</h1>
 		<h3>Enter a New Card</h3>
 		<!-- Form to enter a new card-->
-		<form>
+		<div>
 		<div class="form-group">
 			<label for="cardNumber1">Card Number</label>
-			<input type="text" class="form-control" id="cardNumber1" placeholder="Card Number">
+			<input type="text" class="form-control" id="cardNumber1" placeholder="Card Number" name="cardNumber">
 		  </div>
 		<div class="form-group">
 			<label for="cardType1">Card Type</label>
-			<input type="text" class="form-control" id="cardType1" placeholder="ex.  MasterCard, Visa...">
+			<input type="text" class="form-control" id="cardType1" placeholder="ex.  MasterCard, Visa..." name="cardType">
 		  </div>
 		  <div class="form-group">
 			<label for="expirationDate1">Expiration Date</label>
-			<input type="text" class="form-control" id="expirationDate1" placeholder="ex. 04/2018">
+			<input type="text" class="form-control" id="expirationDate1" placeholder="ex. 04/2018" name="expDate">
 		  </div>
-		  <button type="submit" class="btn btn-primary">Add Card</button>
-		</form>
+		  <button type="submit" class="btn btn-primary" onclick="addNewCard();">Add Card</button>
+		</div>
 		<hr>
 		
 		<h3>Manage Existing Cards</h3>
-			<table class="table table-hover">
-			<thead>
-			<tr>
-			  <th>Card Number</th>
-			  <th>Card Type</th>
-			  <th>Expiration Date</th>
-			  <th>Delete</th>
-			</tr>
-		  </thead>
-		  <tbody>
-			<tr>
-			  <td>xxxx-xxxx-xxxx-1234</td>
-			  <td>MasterCard</td>
-			  <td>04/2018</td>
-			  <td>
-					<button type="button" class="btn btn-danger">Remove Card</button>
-			  </td>
-			</tr>
-			<tr>
-			  <td>xxxx-xxxx-xxxx-5678</td>
-			  <td>Visa</td>
-			  <td>12/2020</td>
-			  <td>
-					<button type="button" class="btn btn-danger">Remove Card</button>
-			  </td>
-			</tr>
-			<tr>
-			  <td>xxxx-xxxx-xxxx-9012</td>
-			  <td>Discover</td>
-			  <td>05/2017</td>
-			  <td>
-					<button type="button" class="btn btn-danger">Remove Card</button>
-			  </td>
-			</tr>
-		  </tbody>
+			<table class="table table-hover" id="existing-cards">
+				<thead>
+				<tr>
+				  <th>Card Number</th>
+				  <th>Card Type</th>
+				  <th>Expiration Date</th>
+				  <th>Delete</th>
+				</tr>
+			  </thead>
+			  <tbody>
+					<!--populated by card-management-ajax.js-->
+			  </tbody>
 		</table>
     </div>
 
@@ -121,6 +100,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+	<script src="js/card-management-ajax.js"></script>
   </body>
 
 </html>
