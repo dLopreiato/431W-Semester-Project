@@ -14,6 +14,7 @@ function populateExistingCards() {
         error: function(xhr, ajaxOptions, thrownError) {
             var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
             for (var key in serverErrorInfo) {
+				displayGeneralUserError(serverErrorInfo[key]['userErrorText']);
                 console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
             }
         }
@@ -21,7 +22,7 @@ function populateExistingCards() {
 }
 
 function addCardToTable(cardNumber, cardType, expDate) {
-	var appendString = '<tr id="' + cardNumber + '"><td>' + cardNumber + '</td><td>' + cardType + '</td><td>' + expDate + '</td><td><button type="button" class="btn btn-danger" onclick="removeCard(' + cardNumber  + ');">Remove Card</button></td></tr>';
+	var appendString = '<tr id="' + cardNumber + '"><td>' + cardNumber + '</td><td>' + cardType + '</td><td>' + expDate + '</td><td><button type="button" class="btn btn-danger" onclick="removeCard(\'' + cardNumber  + '\');">Remove Card</button></td></tr>';
 	$('#existing-cards tbody').append(appendString);
 }
 
@@ -36,7 +37,7 @@ function removeCard(cardNumber) {
         method: 'GET',
         success: function(data) {
             if (data) {
-				document.getElementById(cardNumber).remove();
+				$('#' + cardNumber).remove();
             }
             else {
                 displayGeneralUserError('Unable to delete this card.  Please try again later. ');
@@ -69,9 +70,9 @@ function addNewCard() {
         success: function(data) {
             if (data) {
 				addCardToTable(cardNumber, cardType, expDate);
-				document.getElementById('cardNumber1').value = "";
-				document.getElementById('cardType1').value = "";
-				document.getElementById('expirationDate1').value = "";
+				$("#cardNumber1").val('');
+				$("#cardType1").val('');
+				$("#expirationDate1").val('');
             }
             else {
                 displayGeneralUserError('Unable to add this card.  Please try again later');
