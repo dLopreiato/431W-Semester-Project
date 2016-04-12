@@ -1,3 +1,4 @@
+
 <?php
 /*
 Input (1 POST parameters): username
@@ -36,7 +37,7 @@ if(!($username && $amount && $item_id && $card_number)) {
     	echo json_encode(TRUE);
     	exit;
     } else {
-        SendSingleError(HTTP_INTERNAL_ERROR, /*'failed to complete purchase transaction.'*/$databaseConnection->error, ERRTXT_FAILED_QUERY);
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to complete purchase transaction.'/*$databaseConnection->error*/, ERRTXT_FAILED_QUERY);
     }
 }
 
