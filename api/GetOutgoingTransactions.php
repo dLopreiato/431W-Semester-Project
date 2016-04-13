@@ -35,7 +35,7 @@ if(!($username)) {
 		}
 	}
 	
-	$query = "SELECT R.rental_id, R.serial_number, R.rental_date, R.sent, R.received, I.description FROM rentables E, rental_transaction R, items I WHERE E.seller_username='$username' AND R.item_id = E.item_id AND I.item_id = R.item_id";
+	$query = "SELECT R.rental_id, R.serial_number, R.rental_date, R.sent, R.received, I.description, R.was_returned FROM rentables E, rental_transaction R, items I WHERE E.seller_username='$username' AND R.item_id = E.item_id AND I.item_id = R.item_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
