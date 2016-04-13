@@ -27,7 +27,7 @@ if(!($username)) {
 	$rentalResult = array();
 	
 	// get data from database
-	$query = "SELECT * FROM sales WHERE username = '$username' ";
+	$query = "SELECT I.description, S.* FROM sales S, items I WHERE username = '$username' AND I.item_id = S.item_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
@@ -35,7 +35,7 @@ if(!($username)) {
 		}
 	}
 	
-	$query = "SELECT * FROM rental_transaction WHERE rented_out_to_username = '$username' ";
+	$query = "SELECT I.description, R.* FROM rental_transaction R, items I WHERE R.rented_out_to_username = '$username' AND I.item_id = R.item_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
