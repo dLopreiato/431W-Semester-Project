@@ -24,20 +24,22 @@ $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 $amount = (isset($_GET['amount'])) ? ($_GET['amount']) : (false);
 $item_id = (isset($_GET['item_id'])) ? ($_GET['item_id']) : (false);
 $card_number = (isset($_GET['card_number'])) ? ($_GET['card_number']) : (false);
+$address_id = (isset($_GET['address_id'])) ? ($_GET['address_id']) : (false);
 
 // Check for Data
-if(!($username && $amount && $item_id && $card_number)) {
+if(!($username && $amount && $item_id && $card_number && $address_id)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
-	$query = "INSERT INTO sales (amount, `time`, username, item_id, card_number) VALUES ($amount, NOW(), '$username', $item_id, $card_number)";
-	if($databaseConnection->query( $query)) { // If query was successful
+	$query1 = "INSERT INTO sales (amount, `time`, username, item_id, card_number, address_id) VALUES ($amount, NOW(), '$username', $item_id, $card_number, $address_id)";
+    $query2 = "UPDATE sold_by SET number_in_stock=number_in_stock-$amount WHERE item_id=$item_id";
+	if($databaseConnection->query( $query1) && $databaseConnection->query( $query2)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
     } else {
-        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to complete purchase transaction.'/*$databaseConnection->error*/, ERRTXT_FAILED_QUERY);
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to complete purchase transaction.', ERRTXT_FAILED_QUERY);
     }
 }
 

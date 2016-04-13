@@ -39,7 +39,7 @@ if(!($username)) {
 		if ($data->num_rows > 0) {
 			$row = $data->fetch_assoc();
 			$due_date = date('y:m:d', time() + ($row["rental_in_days"]*86400));
-			$query = "INSERT INTO rental_transaction (item_id, serial_number, rented_out_to_username, rental_date, due_date, address_id) VALUES('$item_id', '$serial_number', '$username', now(), '$due_date', '$address_id')";	
+			$query = "INSERT INTO rental_transaction (item_id, serial_number, rented_out_to_username, rental_date, due_date, address_id, card_number) VALUES('$item_id', '$serial_number', '$username', now(), '$due_date', '$address_id', $card_number)";	
 			if($databaseConnection->query($query)) { // If query was successful
 					header(HTTP_OK);
 					header(API_RESPONSE_CONTENT);
