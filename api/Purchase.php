@@ -32,7 +32,7 @@ if(!($username && $amount && $item_id && $card_number && $address_id)) {
 } else {
 	// Write data to database
 	$query1 = "INSERT INTO sales (amount, `time`, username, item_id, card_number, address_id) VALUES ($amount, NOW(), '$username', $item_id, $card_number, $address_id)";
-    $query2 = "UPDATE sold_by SET number_in_stock=number_in_stock-$amount WHERE item_id=$item_id";
+    $query2 = "UPDATE sold_by SET number_in_stock=number_in_stock-1 WHERE item_id=$item_id";
 	if($databaseConnection->query( $query1) && $databaseConnection->query( $query2)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
