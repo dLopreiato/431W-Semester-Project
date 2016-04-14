@@ -49,12 +49,15 @@
     </nav>
 
     <div class="container">
+	<div id="error-view">
+	</div>
         <h1>Purchase History</h1>
-		<table class="table table-hover">
+		<h3>Purchased</h3>
+		<table class="table table-hover" id="purchased-items">
 			<thead>
 			<tr>
 			  <th>Item Name</th>
-			  <th>Quantity</th>
+			  <th>Amount Paid</th>
 			  <th>Purchase Time</th>
 			  <th>Card Used</th>
 			  <th>Sent</th>
@@ -62,36 +65,27 @@
 			</tr>
 		  </thead>
 		  <tbody>
+				<!--populated by purchase-history-ajax.js-->
+		  </tbody>
+		</table>
+		
+		<br>
+		
+		<h3>Rented</h3>
+		<table class="table table-hover" id="rented-items">
+			<thead>
 			<tr>
-			  <td><a href="#">Scrunchie</a></td>
-			  <td>7</td>
-			  <td>4:00 04/06/2016</td>
-			  <td>xxxx-xxxx-xxxx-1234</td>
-			  <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Received</button>
-			  </td>
+			  <th>Item Name</th>
+			  <th>Serial Number</th>
+			  <th>Due Date</th>
+			  <th>Card Used</th>
+			  <th>Sent</th>
+			  <th>Received</th>
+			  <th>Returned</th>
 			</tr>
-			<tr>
-			  <td><a href="#">Slinky</a></td>
-			  <td>2</td>
-			  <td>8:27 02/12/2016</td>
-			  <td>xxxx-xxxx-xxxx-1334</td>
-			  <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Received</button>
-			  </td>
-			</tr>
-			<tr>
-			  <td><a href="#">Polly Pocket</a></td>
-			  <td>1</td>
-			  <td>6:30 01/27/2015</td>
-			  <td>xxxx-xxxx-xxxx-1334</td>
-			  <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Received</button>
-			  </td>
-			</tr>
+		  </thead>
+		  <tbody>
+			<!--populated by purchase-history-ajax.js-->
 		  </tbody>
 		</table>
     </div>
@@ -109,6 +103,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+	<script src="js/purchase-history-ajax.js"></script>
   </body>
 
 </html>
