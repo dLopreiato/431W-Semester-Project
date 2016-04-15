@@ -51,98 +51,38 @@
     <div class="container">
         <h1>Outgoing Transactions</h1>
 		<h3>Sales</h3>
-		<table class="table table-hover" >
+		<table class="table table-hover" id="purchased-table">
 			<thead>
 			<tr>
 			  <th>Item Description</th>
-			  <th>Quantity</th>
+			  <th>Amount</th>
 			  <th>Sending Address</th>
 			  <th>Mark Sent</th>
 			  <th>Received</th>
 			</tr>
 		  </thead>
 		  <tbody>
-			<tr>
-			  <td><a href="#">Scrunchie</a></td>
-			  <td>7</td>
-			  <td>123 Address Rd</td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Sent</button>
-			  </td>
-			   <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-			</tr>
-			<tr>
-			  <td><a href="#">Slinky</a></td>
-			  <td>2</td>
-			  <td>Indiana is a real place</td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Sent</button>
-			  </td>
-			  <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-			</tr>
-			<tr>
-			  <td><a href="#">Polly Pocket</a></td>
-			  <td>1</td>
-			  <td>890 rerrd, citterh, stert, zippy zipper</td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Sent</button>
-			  </td>
-			  <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-			</tr>
+			<!--populated by outgoing-transaction-ajax.js-->
 		  </tbody>
 		</table>
 		
 		<br>
 		
 		<h3>Rentals</h3>
-				<table class="table table-hover" >
+		<table class="table table-hover" id="rented-table">
 			<thead>
 			<tr>
 			  <th>Item Description</th>
 			  <th>Serial Number</th>
 			  <th>Sending Address</th>
+			  <th>Due Date</th>
 			  <th>Mark Sent</th>
 			  <th>Received by Renter</th>
 			  <th>Returned</th>
 			</tr>
 		  </thead>
 		  <tbody>
-			<tr>
-			  <td><a href="#">Scrunchie</a></td>
-			  <td>779483275894375892</td>
-			  <td>123 Address Rd</td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Sent</button>
-			  </td>
-			   <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-			   <td>
-					<button type="button" class="btn btn-warning">Mark Returned</button>
-			  </td>
-			</tr>
-			<tr>
-			  <td><a href="#">Slinky</a></td>
-			  <td>28095903809328</td>
-			  <td>Indiana is a real place</td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Sent</button>
-			  </td>
-			  <td><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Returned</button>
-			  </td>
-			</tr>
-			<tr>
-			  <td><a href="#">Polly Pocket</a></td>
-			  <td>3908504385093409034091</td>
-			  <td>890 rerrd, citterh, stert, zippy zipper</td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Sent</button>
-			  </td>
-			  <td><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></td>
-			  <td>
-					<button type="button" class="btn btn-warning">Mark Returned</button>
-			  </td>
-			</tr>
+			<!--populated by outgoing-transaction-ajax.js-->
 		  </tbody>
 		</table>
     </div>
@@ -160,6 +100,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+	<script src="js/outgoing-transaction-ajax.js"></script>
   </body>
 
 </html>

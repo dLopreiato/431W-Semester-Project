@@ -27,7 +27,7 @@ if(!($username)) {
 	$rentalResult = array();
 	
 	// get data from database
-	$query = "SELECT A.sale_id, A.amount, A.time, A.sent, A.received, I.description, D.shipping_name, D.street, D.city, D.state, D.zip_code FROM sold_by S, sales A, items I, addresses D WHERE S.username='$username' AND A.item_id = S.item_id AND I.item_id = A.item_id AND A.address_id = D.address_id";
+	$query = "SELECT A.sale_id, A.amount, A.time, A.sent, A.received, A.item_id, I.description, D.shipping_name, D.street, D.city, D.state, D.zip_code FROM sold_by S, sales A, items I, addresses D WHERE S.username='$username' AND A.item_id = S.item_id AND I.item_id = A.item_id AND A.address_id = D.address_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
@@ -35,7 +35,7 @@ if(!($username)) {
 		}
 	}
 	
-	$query = "SELECT R.rental_id, R.serial_number, R.rental_date, R.sent, R.received, I.description, R.was_returned, D.shipping_name, D.street, D.city, D.state, D.zip_code FROM rentables E, rental_transaction R, items I, addresses D WHERE E.seller_username='$username' AND R.item_id = E.item_id AND I.item_id = R.item_id AND R.address_id = D.address_id";
+	$query = "SELECT R.rental_id, R.serial_number, R.rental_date, R.sent, R.received, R.item_id, I.description, R.was_returned, R.due_date, D.shipping_name, D.street, D.city, D.state, D.zip_code FROM rentables E, rental_transaction R, items I, addresses D WHERE E.seller_username='$username' AND R.item_id = E.item_id AND I.item_id = R.item_id AND R.address_id = D.address_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
