@@ -23,6 +23,11 @@ $serial_number = (isset($_POST['serial_number'])) ? ($_POST['serial_number']) : 
 $rental_time_unit = (isset($_POST['rental_time_unit'])) ? ($_POST['rental_time_unit']) : (false);
 $price_listing = (isset($_POST['price_listing'])) ? ($_POST['price_listing']) : (false);
 
+// Check for User Login
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+	SendSingleError(HTTP_INTERNAL_ERROR, 'no user logged in', ERRTXT_UNAUTHORIZED);
+}
+
 // Check for Data
 if(!($item_id && $serial_number && $rental_time_unit && $price_listing)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);

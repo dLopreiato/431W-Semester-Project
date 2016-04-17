@@ -22,6 +22,11 @@ $username = $_SESSION['username'];
 $reserve_price = (isset($_POST['reserve_price'])) ? ($_POST['reserve_price']) : (false);
 $number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
 
+// Check for User Login
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+	SendSingleError(HTTP_INTERNAL_ERROR, 'no user logged in', ERRTXT_UNAUTHORIZED);
+}
+
 // Check for Data
 if(!($item_id && $reserve_price && $number_in_stock)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);

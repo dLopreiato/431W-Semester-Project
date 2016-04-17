@@ -18,6 +18,11 @@ $item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
 $amount = (isset($_POST['amount'])) ? ($_POST['amount']) : (false);
 $bid_won = "FALSE";
 
+// Check for User Login
+if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
+	SendSingleError(HTTP_INTERNAL_ERROR, 'no user logged in', ERRTXT_UNAUTHORIZED);
+}
+
 // Check for Data
 if(!($item_id && $star_rating)) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
