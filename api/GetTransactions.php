@@ -19,7 +19,7 @@ if ($databaseConnection->connect_errno != 0) {
 // Put data in variables
 $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
 } else {
 	

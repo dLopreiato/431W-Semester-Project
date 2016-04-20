@@ -27,7 +27,7 @@ $card_number = (isset($_GET['card_number'])) ? ($_GET['card_number']) : (false);
 $address_id = (isset($_GET['address_id'])) ? ($_GET['address_id']) : (false);
 
 // Check for Data
-if(!($username && $amount && $item_id && $card_number && $address_id)) {
+if($username === false || $amount === false ||  $item_id === false ||  $card_number === false ||  $address_id === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database

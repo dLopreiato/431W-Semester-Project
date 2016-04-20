@@ -20,7 +20,7 @@ if ($databaseConnection->connect_errno != 0) {
 $username = (isset($_GET['username'])) ? ($_GET['username']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	// get data from database

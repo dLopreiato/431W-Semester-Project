@@ -22,7 +22,7 @@ $term = (isset($_GET['term'])) ? ($_GET['term']) : (false);
 
 
 // Check for Data
-if(!($term)) {
+if($term === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "bad term.", ERRTXT_ID_NOT_FOUND);
 } else {
 	$query = "SELECT I.item_id, I.description, I.image, I.category_id, C.name FROM items I, categories C WHERE C.category_id = I.category_id AND I.description LIKE '%$term%'";

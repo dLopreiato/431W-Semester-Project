@@ -25,7 +25,7 @@ $gender = (isset($_POST['gender'])) ? ($_POST['gender']) : (false);
 $annual_income = (isset($_POST['annual_income'])) ? ($_POST['annual_income']) : (false);
 
 // Check for Data
-if(!($username && $password && $email && $name && $phone_number && $age && $gender && $annual_income)) {
+if($username === false || $password === false || $email === false || $name === false || $phone_number === false || $age === false || $gender === false || $annual_income === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	

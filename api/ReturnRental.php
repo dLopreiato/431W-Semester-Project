@@ -23,9 +23,9 @@ $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 $rental_id = (isset($_GET['rental_id'])) ? ($_GET['rental_id']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
-} else if (!($rental_id)){
+} else if ($rental_id === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	

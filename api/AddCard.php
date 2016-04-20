@@ -25,9 +25,9 @@ $card_type = (isset($_GET['card_type'])) ? ($_GET['card_type']) : (false);
 $exp_date = (isset($_GET['exp_date'])) ? ($_GET['exp_date']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
-} else if (!($card_number && $card_type && $exp_date)){
+} else if ($card_number === false || $card_type === false || $exp_date === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	$query = "INSERT INTO credit_cards (username, card_number, card_type, exp_date) VALUES('$username', '$card_number', '$card_type', '$exp_date')";	

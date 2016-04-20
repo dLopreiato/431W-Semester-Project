@@ -23,9 +23,9 @@ $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 $address_id = (isset($_GET['address_id'])) ? ($_GET['address_id']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
-} else if (!($address_id)){
+} else if ($address_id === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	

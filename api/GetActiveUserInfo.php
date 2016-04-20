@@ -21,7 +21,7 @@ if ($databaseConnection->connect_errno != 0) {
 $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	header(HTTP_OK);
 	header(API_RESPONSE_CONTENT);
     echo json_encode(FALSE);

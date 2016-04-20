@@ -29,7 +29,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 }
 
 // Check for Data
-if(!($item_id && $serial_number && $rental_time_unit && $price_listing)) {
+if($item_id === false ||  $serial_number === false ||  $rental_time_unit === false ||  $price_listing === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Check ownership

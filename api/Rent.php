@@ -26,9 +26,9 @@ $address_id = (isset($_GET['address_id'])) ? ($_GET['address_id']) : (false);
 $card_number = (isset($_GET['card_number'])) ? ($_GET['card_number']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
-} else if (!($item_id && $address_id && $serial_number  && $card_number)){
+} else if ($item_id === false || $address_id === false || $serial_number === false || $card_number === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	// Should we do error checking her to make sure it's not already rented? aka make sure on_shelf is one?

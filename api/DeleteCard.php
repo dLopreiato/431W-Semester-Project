@@ -23,9 +23,9 @@ $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 $card_number = (isset($_GET['card_number'])) ? ($_GET['card_number']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
-} else if (!($card_number)){
+} else if ($card_number === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	

@@ -64,7 +64,7 @@ if ($databaseConnection->connect_errno != 0) {
 $category_id = (isset($_GET['category_id'])) ? ($_GET['category_id']) : (false);
 
 //If no category_id specified, return all items
-if(!($category_id)) {
+if($category_id === false) {
 	$query = "SELECT * FROM items";
 	$data = $databaseConnection->query($query);
 

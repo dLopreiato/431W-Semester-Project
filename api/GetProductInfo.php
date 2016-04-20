@@ -18,7 +18,7 @@ if ($databaseConnection->connect_errno != 0) {
 $item_id = (isset($_GET['item_id'])) ? ($_GET['item_id']) : (false);
 
 // Check for Data
-if(!($item_id)) {
+if($item_id === false) {
 	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// get data from database

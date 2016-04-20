@@ -24,7 +24,7 @@ $sale_id = (isset($_GET['sale_id'])) ? ($_GET['sale_id']) : (false);
 $rental_id = (isset($_GET['rental_id'])) ? ($_GET['rental_id']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "username not found", ERRTXT_ID_NOT_FOUND);
 } else {
 

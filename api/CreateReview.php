@@ -20,7 +20,7 @@ $star_rating = (isset($_POST['star_rating'])) ? ($_POST['star_rating']) : (false
 $description = (isset($_POST['description'])) ? ($_POST['description']) : (false);
 
 // Check for Data
-if(!($item_id && $star_rating)) {
+if($item_id === false || $star_rating === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database

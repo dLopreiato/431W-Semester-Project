@@ -21,7 +21,7 @@ if ($databaseConnection->connect_errno != 0) {
 $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
 } else {
 	$query = "SELECT * FROM credit_cards WHERE username = '$username'";

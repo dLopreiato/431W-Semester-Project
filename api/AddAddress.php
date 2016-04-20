@@ -27,9 +27,9 @@ $city = (isset($_GET['city'])) ? ($_GET['city']) : (false);
 $street = (isset($_GET['street'])) ? ($_GET['street']) : (false);
 
 // Check for Data
-if(!($username)) {
+if($username === false) {
 	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
-} else if (!($shipping_name && $zip_code && $state && $city && $street)){
+} else if ($shipping_name === false || $zip_code === false || $state === false || $city === false || $street === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	$query = "INSERT INTO addresses (username, shipping_name, street, city, state, zip_code) VALUES('$username', '$shipping_name', '$street', '$city', '$state', '$zip_code')";	

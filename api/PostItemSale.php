@@ -28,7 +28,7 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 }
 
 // Check for Data
-if(!($item_id && $listed_price && $number_in_stock)) {
+if($item_id === false ||  $listed_price === false ||  $number_in_stock === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Check ownership

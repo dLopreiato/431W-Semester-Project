@@ -20,7 +20,7 @@ if ($databaseConnection->connect_errno != 0) {
 $item_id = (isset($_GET['item_id'])) ? ($_GET['item_id']) : (false);
 
 // Check for Data
-if(!($item_id)) {
+if($item_id === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	

@@ -38,7 +38,7 @@ if ($databaseConnection->connect_errno != 0) {
 // Put data in variables
 $category_id = (isset($_GET['category_id'])) ? ($_GET['category_id']) : (false);
 
-if(!($category_id)) {
+if($category_id === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	
