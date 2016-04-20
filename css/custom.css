@@ -1,8 +1,34 @@
 /* Logo Styles
 -------------------------------------------------- */
 .navbar-brand {
-    color: hotpink !important;
+    color: #ea0082 !important;
     font-weight: 900;
+    line-height: 70px;
+    height: 70px;
+    padding-top: 0;
+}
+
+.navbar-brand img{
+  float: right;
+  margin: 0 0 10px 10px;
+  padding-top: 10px;
+}
+
+.navbar {
+  overflow: auto;
+  height: 70px;
+}
+
+.navbar-nav li a {
+    line-height: 70px;
+    height: 70px;
+    padding-top: 0;
+}
+
+.navbar .navbar-form{
+    line-height: 50px;
+    height: 50px;
+    padding-top: 0;
 }
 /* Sticky footer styles
 -------------------------------------------------- */
