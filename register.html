@@ -49,50 +49,52 @@
     </nav>
 
     <div class="container">
+        <div id="error-view">
+        </div>
         <h1>Register for #90sKidsRUs</h1>
 		<div>
 		<div class="form-group">
 			<label for="username1">Username</label>
-			<input type="text" class="form-control" id="username1" placeholder="Username">
+			<input type="text" class="form-control" id="username1" name="username"placeholder="Username">
 		  </div>
 		<div class="form-group">
 			<label for="password1">Password</label>
-			<input type="password" class="form-control" id="password1" placeholder="Password">
+			<input type="password" class="form-control" id="password1" name="password" placeholder="Password">
 		  </div>
 		  <div class="form-group">
 			<label for="confirmPassword1">Password</label>
-			<input type="password" class="form-control" id="confirmPassword1" placeholder="Confirm Password">
+			<input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password">
 		  </div>
 		  <div class="form-group">
 			<label for="exampleInputEmail1">Email address</label>
-			<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+			<input type="email" class="form-control" name="email" id="email1" placeholder="Email">
 		  </div>
 		  <div class="form-group">
 			<label for="name1">Name</label>
-			<input type="text" class="form-control" id="name1" placeholder="Name">
+			<input type="text" class="form-control" id="name1" name="nam" placeholder="Name">
 		  </div>
 		  <div class="form-group">
 			<label for="phoneNumber1">Phone Number</label>
-			<input type="text" class="form-control" id="phoneNumber1" placeholder="Phone Number">
+			<input type="text" class="form-control" id="phoneNumber1" name="phone_number" placeholder="Phone Number">
 		  </div>
 		  <div class="form-group">
 			<label for="age1">Age</label>
-			<input type="number" class="form-control" id="age1" placeholder="Age" min ="1">
+			<input type="number" class="form-control" id="age1" name="age" placeholder="Age" min ="1">
 		  </div>
 		  <div class="form-group">
 			<label for="gender1">Gender</label>
-			<input type="text" class="form-control" id="gender1" placeholder="Gender">
+			<input type="text" class="form-control" id="gender1" name="gender" placeholder="Gender">
 		  </div>
 		  <div class="form-group">
 			<label for="annualncome1">Annual Income</label>
-			<input type="number" class="form-control" id="annualIncome1" placeholder="Annual Income" min ="0">
+			<input type="number" class="form-control" name="annual_income" id="annualincome1" placeholder="Annual Income" min ="0">
 		  </div>
 		  <div class="checkbox">
 			<label>
 			  <input type="checkbox"> I agree to the terms and conditions (that don't exist)
 			</label>
 		  </div>
-		  <button type="submit" class="btn btn-primary">Register</button>
+		  <button type="submit" class="btn btn-primary" onclick="registerUser();">Register</button>
 		</div>
     </div>
 
@@ -108,6 +110,7 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
+    <script src="js/register-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
   </body>
 
