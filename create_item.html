@@ -49,37 +49,76 @@
     </nav>
 
     <div class="container col-sm-offset-4">
+		<div id="error-view">
+		</div>
         <h1>Create an Item</h1>
         <div class="input-group">
             <label for="item_description">Item Description</label>
-            <input type="text" class="form-control" placeholder="Enter item description here">
+            <input type="text" class="form-control" placeholder="Enter item description here" name="itemDescription" id="description1">
         </div>
         <br/>
         <div class="input-group">
             <label for="item_location">Item Location</label>
-            <input type="text" class="form-control" placeholder="Enter item location here">
+            <input type="text" class="form-control" placeholder="Enter item location here" name="itemLocation"  id="location1">
         </div>
        
         <br/>
         <div class="input-group">
             <label for="item_category">Item Category</label>
-            <select class="form-control">
-                <option value="toys">Toys</option>
-                <option value="music">Music</option>
-                <option value="movies">Movies</option>
-                <option value="clothing">Clothing</option>
-                <option value="accesories">Accessories</option>
-                <option value="games">Games</option>
+            <select class="form-control" id="itemCategory1">
+				<option value="-1">Please Select</option>
+                <option value="0">Toys</option>
+                <option value="1">Music</option>
+                <option value="2">Movies</option>
+                <option value="3">Clothing</option>
+                <option value="4">Accessories</option>
+                <option value="5">Games</option>
             </select>
         </div>
+		<div id="br1">
+			<br>
+		</div>
+		
+		<div class="input-group" id="subcategory1">
+		<label for="item_category">Item Subcategory</label>
+            <select class="form-control" id="itemSubcategory1">
+			</select>
+		</div>
+		<div id="br2">
+			<br>
+		</div>
+		
+		<div class="input-group" id="subcategory2">
+		<label for="item_category">Item Subcategory</label>
+            <select class="form-control" id="itemSubcategory2">
+			</select>
+		</div>	
+		
+		<div id="br3">
+			<br>
+		</div>	
+
+		<div class="input-group" id="subcategory3">
+		<label for="item_category">Item Subcategory</label>
+            <select class="form-control" id="itemSubcategory3">
+			</select>
+		</div>
+	
+		
         <br/>
-        <div class="input-group">
+        <!--div class="input-group">
             <label for="pictureInputFile">Item Picture Input</label>
             <input type="file" id="pictureInputFile">
+        </div-->
+		 <div class="input-group">
+            <label for="item_image">Image Link</label>
+            <input type="text" class="form-control" placeholder="Enter link to the image" name="itemImage" id="image1">
         </div>
         <br/>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </div>
+        <button type="submit" class="btn btn-default" onclick="submitNewItem();">Submit</button>
+		<br>
+		<br>
+	</div>
 
     <footer class="footer">
         <div class="container">
@@ -94,6 +133,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+	 <script src="js/create-item-ajax.js"></script>
   </body>
 
 </html>
