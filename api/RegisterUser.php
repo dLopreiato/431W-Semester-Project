@@ -21,11 +21,10 @@ $email = (isset($_POST['email'])) ? ($_POST['email']) : (false);
 $name = (isset($_POST['name'])) ? ($_POST['name']) : (false);
 $phone_number = (isset($_POST['phone_number'])) ? ($_POST['phone_number']) : (false);
 $age = (isset($_POST['age'])) ? ($_POST['age']) : (false);
-$gender = (isset($_POST['gender'])) ? ($_POST['gender']) : (false);
 $annual_income = (isset($_POST['annual_income'])) ? ($_POST['annual_income']) : (false);
 
 // Check for Data
-if($username === false || $password === false || $email === false || $name === false || $phone_number === false || $age === false || $gender === false || $annual_income === false){
+if($username === false || $password === false || $email === false || $name === false || $phone_number === false || $age === false || $annual_income === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	
