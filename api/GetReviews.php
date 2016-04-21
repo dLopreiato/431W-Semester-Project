@@ -25,18 +25,18 @@ if($item_id === false) {
 	$query = "SELECT star_ranking, description FROM ratings WHERE item_id = $item_id";
 	$data = $databaseConnection->query($query);
     if ($data->num_rows > 0) {
+        $output = array();
+        while ($row = $data->fetch_assoc()) {
+            $output[] = $row;
+        }
     	header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
-    	echo json_encode($data);
-	    // output data of each row
-	    /*while($row = $data->fetch_assoc()) {
-	        echo $row["star_ranking"]. " Stars: " . $row["description"] . "<br>";
-	    }*/
+    	echo json_encode($output);
 	    exit;
 	} else if($data != "") {
 	    header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
-    	echo json_encode("no reviews");
+    	echo json_encode(false);
     	exit;
 	} else {
         SendSingleError(HTTP_INTERNAL_ERROR, 'failed to retrieve reviews from database', ERRTXT_FAILED_QUERY);

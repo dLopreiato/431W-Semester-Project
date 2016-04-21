@@ -9,12 +9,20 @@ require_once('../lib/http_headers.php');
 require_once('../lib/api_common_error_text.php');
 require_once('../lib/api_error_functions.php');
 
+session_start();
+
 // Set Up the Database Connection
 $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
 if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
+// check user loggin
+if (!isset($_SESSION['username'])) {
+    SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
+}
+
 // Put data in variables
+$username = $_SESSION['username'];
 $item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
 $star_rating = (isset($_POST['star_rating'])) ? ($_POST['star_rating']) : (false);
 $description = (isset($_POST['description'])) ? ($_POST['description']) : (false);
@@ -24,7 +32,7 @@ if($item_id === false || $star_rating === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Write data to database
-	$query = "INSERT INTO ratings (item_id, star_ranking, description, review_date) VALUES($item_id, $star_rating, '". $description ."', CURRENT_DATE())";
+	$query = "INSERT INTO ratings (item_id, star_ranking, description, review_date, username) VALUES($item_id, $star_rating, '$description', NOW(), '$username')";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);

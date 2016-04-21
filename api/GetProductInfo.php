@@ -29,13 +29,13 @@ if($item_id === false) {
     }
     $data = $infoResult->fetch_assoc();
 
-    $auctionInfo = "SELECT reserve_price, number_in_stock as 'available_for_auction' FROM auctioned_by WHERE item_id=$item_id";
+    $auctionInfo = "SELECT reserve_price FROM auctioned_by WHERE item_id=$item_id AND number_in_stock > 0";
     $auctionResult = $databaseConnection->query($auctionInfo);
     if ($auctionResult !== false && $auctionResult->num_rows > 0) {
         $data = array_merge($data, $auctionResult->fetch_assoc());
     }
 
-    $salesInfo = "SELECT listed_price, number_in_stock FROM sold_by WHERE item_id=$item_id";
+    $salesInfo = "SELECT listed_price FROM sold_by WHERE item_id=$item_id AND number_in_stock > 0";
     $salesResult = $databaseConnection->query($salesInfo);
     if ($salesResult !== false && $salesResult->num_rows > 0) {
         $data = array_merge($data, $salesResult->fetch_assoc());

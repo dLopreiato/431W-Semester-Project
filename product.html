@@ -49,33 +49,31 @@
 
     <div class="container">
         <!--not really sure how to do this is we have different category depths?-->
-        <div class="container">
-            <button type="button" class="btn btn-link">Category Backtree</button>
-            <button type="button" class="btn btn-link">Category</button>
-        </div>
-        <h1>Product Name</h1>
-        <div class="container col-xs-3">
-            <img class="img-responsive" src="http://i0.wp.com/cdn.bgr.com/2015/10/bear.jpg?w=625">
+        <div id="error-view"></div>
+        <ol class="breadcrumb" id="categoryTree"></ol>
+        <h1 id="productName"></h1>
+        <div class="col-xs-3">
+            <img class="img-responsive" src="" id="productImage">
             <br/>
             <br/>
-            <div class="container">
+            <div id="reviewEditor">
                 <h3>Create a Review</h3>
                 <h5>Select Number of Stars: </h5>
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-primary active">
-                        <input type="radio" name="options" id="option1" autocomplete="off" checked> 1
+                        <input type="radio" name="options" id="option1" autocomplete="off" value="1"> 1
                      </label>
                      <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option2" autocomplete="off"> 2
+                        <input type="radio" name="options" id="option2" autocomplete="off" value="2"> 2
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> 3
+                        <input type="radio" name="options" id="option3" autocomplete="off" value="3"> 3
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> 4
+                        <input type="radio" name="options" id="option3" autocomplete="off" value="4"> 4
                     </label>
                     <label class="btn btn-primary">
-                        <input type="radio" name="options" id="option3" autocomplete="off"> 5
+                        <input type="radio" name="options" id="option3" autocomplete="off" value="5"> 5
                     </label>
                 </div>
                 <h5>Write a Review:</h5>
@@ -83,40 +81,37 @@
                     <textarea class="form-control" id="review"></textarea>
                 </div>
                 <br/>
-                <button type="submit" class="btn btn-default">Submit Review</button>
+                <button type="submit" class="btn btn-default" onclick="submitReview();">Submit Review</button>
             </div>
         </div>
-        <div class="container col-xs-6">
+        <div class="col-xs-6">
             <h2><center>Customer Reviews</center></h2>
-            <div class="container">
-                <h4>Average Rating: </h4>
-                <h5>5 star ratings: </h5>
-                <h5>4 star ratings: </h5>
-                <h5>3 star ratings: </h5>
-                <h5>2 star ratings: </h5>
-                <h5>1 star ratings: </h5>
+            <div>
+                <h4>Average Rating: <strong id="averageRating"></strong></h4>
+                <h5>5 star ratings: <strong id="fiveRating"></strong></h5>
+                <h5>4 star ratings: <strong id="fourRating"></strong></h5>
+                <h5>3 star ratings: <strong id="threeRating"></strong></h5>
+                <h5>2 star ratings: <strong id="twoRating"></strong></h5>
+                <h5>1 star ratings: <strong id="oneRating"></strong></h5>
                 <br/>
                 <h3>Reviews</h3>
-                <div class="container">
-                    <h5>User: </h5>
-                    <h5>Number of Stars: </h5>
-                    <p>Put review text here</p>
-                </div>
+                <div id="reviews"></div>
             </div>
         </div>
-        <div class="container col-xs-3">
+        <div class="col-xs-3">
             <h2>Purchase Options</h2>
-            <div>
+            <h4 id="unavailableNotice">Product Currently Unavailable</h4>
+            <div id="purchaseOptions" class="hidden">
                 <h3>Buy</h3>
-                <h4>Price: </h4>
+                <h4>Price: $<span></span></h4>
                 <button type="submit" class="btn btn-default">Buy Now!</button>
             </div>
-            <div>
+            <div id="rentalOptions" class="hidden">
                 <h3>Rent</h3>
-                <h4>Price: </h4>
+                <h4>Late Fees as Low as $<span></span></h4>
                 <button type="submit" class="btn btn-default">Rent Now!</button>
             </div>
-            <div>
+            <div id="bidOptions" class="hidden">
                 <h3>Bid</h3>
                 <h4>Enter Bid Amount: </h4>
                 <div class="input-group">
@@ -143,6 +138,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+    <script src="js/product-ajax.js"></script>
   </body>
 
 </html>
