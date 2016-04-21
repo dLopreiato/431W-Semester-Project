@@ -42,6 +42,7 @@ function submitNewItem() {
 					$("#description1").val('');
 					$("#location1").val('');
 					$("#image1").val('');
+					displaySuccess();
 				}
 				else {
 					displayGeneralUserError('Unable to add this address.  Please try again later');
@@ -164,4 +165,8 @@ $(document).on("change", '#itemSubcategory2', function(e) {
 function displayGeneralUserError(textToDisplay) {
 	var divText = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + textToDisplay + '</div>';
     $('#error-view').append(divText);
+}
+
+function displaySuccess() {
+	$('#error-view').append('<div class="alert alert-success alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>You\'ve successfully added this item!</div>');
 }
