@@ -27,6 +27,5 @@ function setActiveUserInfo() {
 
 function submitSearch() {
     var searchTerm = $('input:text[name=searchBar]').val();
-
-    console.log(searchTerm); // delete this when implementing. this is just to show you what it is
+    window.location.href = PROTOCOL + ROOT_DIRECTORY + '/search_results.html?term=' + searchTerm;
 }
