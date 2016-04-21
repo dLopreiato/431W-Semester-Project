@@ -49,51 +49,16 @@
     </nav>
 
     <div class="container col-sm-offset-4">
+	<div id="error-view">
+	</div>
         <h1>Search Results</h1>
-        <div class="row">
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <a href="#"><div class = "product-image" data-content="View">
-                    <img src="img/AaronsParty.jpg"></div></a>
-                     <div class="caption">
-                        <h4>Aaron's Party CD</h4>
-                        <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$10</b><p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <a href="#"><div class = "product-image" data-content="View">
-                    <img src="img/BackstreetBoys.jpg" alt="..."></div></a>
-                     <div class="caption">
-                        <h4>Backstreet Boys CD</h4>
-                        <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$10</b><p>
-                    </div>
-                </div>
-            </div>
-                       <div class="col-md-3">
-                <div class="thumbnail">
-                    <a href="#"><div class = "product-image" data-content="View">
-                    <img src="img/DreamStreet.jpg" alt="..."></div></a>
-                     <div class="caption">
-                        <h4>Dream Street CD</h4>
-                        <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$10</b><p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="thumbnail">
-                    <a href="#"><div class = "product-image" data-content="View">
-                    <img src="img/GoodVibrations.jpg" alt="..."></div></a>
-                     <div class="caption">
-                        <h4>Good Vibrations CD</h4>
-                        <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$10</b><p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        
+		<div id = "noResults" style="display:none">
+			<br>
+			<h4>Sorry, we couldn't find anything.  Try some different search terms?</h4>
+		</div>
+        <div class="row" id = "search-results">
+            <!--populated by search-results-ajax.js-->
+        </div>  
     </div>
 
     <footer class="footer">
@@ -109,6 +74,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+	<script src="js/search-results-ajax.js"></script>
   </body>
 
 </html>
