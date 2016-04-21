@@ -37,7 +37,7 @@ if($username === false || $password === false || $email === false || $name === f
 	}
 	else{
 		// Write data to database
-		$query = "INSERT INTO registered_users (username, name, password, email, phone_number, age, annual_income) VALUES('$username', '$name', '$password', '$email', '$phone_number', '$age', '$annual_income')";
+		$query = "INSERT INTO registered_users (username, name, password, email, phone_number, age, annual_income, gender) VALUES('$username', '$name', '$password', '$email', '$phone_number', '$age', '$annual_income', '$gender')";
 		if($databaseConnection->query($query)) { // If query was successful
 			header(HTTP_OK);
 			header(API_RESPONSE_CONTENT);
