@@ -22,24 +22,38 @@ if($item_id === false) {
 	SendSingleError(HTTP_INTERNAL_ERROR, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// get data from database
-	$query = "SELECT I.description, I.location, S.listed_price, S.number_in_stock, A.reserve_price, A.number_in_stock FROM items I, sold_by S, auctioned_by A WHERE I.item_id = '$item_id' AND S.item_id = '$item_id' AND A.item_id = '$item_id' ";
-	$data = $databaseConnection->query($query);
+    $infoQuery = "SELECT I.description, I.location, I.image, I.category_id FROM items I WHERE I.item_id=$item_id";
+    $infoResult = $databaseConnection->query($infoQuery);
+    if ($infoResult === false || $infoResult->num_rows <= 0) {
+        SendSingleError(HTTP_INTERNAL_ERROR, "info query broke or item doesn't exist", ERRTXT_FAILED_QUERY);
+    }
+    $data = $infoResult->fetch_assoc();
+
+    $auctionInfo = "SELECT reserve_price, number_in_stock as 'available_for_auction' FROM auctioned_by WHERE item_id=$item_id";
+    $auctionResult = $databaseConnection->query($auctionInfo);
+    if ($auctionResult !== false && $auctionResult->num_rows > 0) {
+        $data = array_merge($data, $auctionResult->fetch_assoc());
+    }
+
+    $salesInfo = "SELECT listed_price, number_in_stock FROM sold_by WHERE item_id=$item_id";
+    $salesResult = $databaseConnection->query($salesInfo);
+    if ($salesResult !== false && $salesResult->num_rows > 0) {
+        $data = array_merge($data, $salesResult->fetch_assoc());
+    }
 	
-    if ($data->num_rows > 0) {
-    	header(HTTP_OK);
-		header(API_RESPONSE_CONTENT);
-    	echo json_encode($data);
-	    // output data of each row
-	    /*while($row = $data->fetch_assoc()) {
-	        echo $row["star_ranking"]. " Stars: " . $row["description"] . "<br>";
-	    }*/
-	    exit;
-	} else if($data != "") {
-	    header(HTTP_OK);
-		header(API_RESPONSE_CONTENT);
-    	echo json_encode("no products");
-    	exit;
-	}
+    $rentalInfo = "SELECT serial_number, rental_in_days, rental_price FROM rentables WHERE item_id=$item_id AND on_shelf=1";
+    $rentalResult = $databaseConnection->query($rentalInfo);
+    if ($rentalResult !== false) {
+        while ($row = $rentalResult->fetch_assoc()) {
+            $data['rentables'][] = $row;
+        }
+    }
+
+
+	header(HTTP_OK);
+	header(API_RESPONSE_CONTENT);
+	echo json_encode($data);
+    exit;
 }
 
 SendSingleError(HTTP_INTERNAL_ERROR, 'php failed', ERRTXT_FAILED);
