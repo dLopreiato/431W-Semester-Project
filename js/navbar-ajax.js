@@ -9,7 +9,7 @@ function setActiveUserInfo() {
         success: function(data) {
             if (data != false) {
                 $('#navbar-links').append('<li><a href="logout.html">Logout</a></li>');
-                $('#navbar-links').append('<li><a href="#">' + data['name'] + '</a></li>');
+                $('#navbar-links').append('<li><a href="account.html">' + data['name'] + '</a></li>');
             }
             else {
                 $('#navbar-links').append('<li><a href="login.html">Login</a></li>');
