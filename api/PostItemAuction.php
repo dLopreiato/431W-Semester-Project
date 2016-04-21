@@ -18,8 +18,8 @@ if ($databaseConnection->connect_errno != 0) {
 }
 // Put data in variables
 $item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
-$username = $_SESSION['username'];
-$reserve_price = (isset($_POST['reserve_price'])) ? ($_POST['reserve_price']) : (false);
+//$username = $_SESSION['username'];
+//$reserve_price = (isset($_POST['reserve_price'])) ? ($_POST['reserve_price']) : (false);
 $number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
 
 // Check for User Login
@@ -33,7 +33,7 @@ if($item_id === false ||  $reserve_price === false ||  $number_in_stock === fals
 } else {
 	// Check ownership
 	// Write data to database
-	$query = "INSERT INTO auctioned_by (item_id, username, reserve_price, number_in_stock) VALUES($item_id, '". $username . "', '" . $reserve_price . "', $number_in_stock)";
+	$query = "UPDATE items I SET I.quantity_auction = I.quantity_auction + $number_in_stock WHERE I.item_id = $item_id";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);

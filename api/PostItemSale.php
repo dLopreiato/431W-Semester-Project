@@ -18,9 +18,9 @@ if ($databaseConnection->connect_errno != 0) {
 }
 // Put data in variables
 $item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
-$username = $_SESSION['username'];
-$listed_price = (isset($_POST['listed_price'])) ? ($_POST['listed_price']) : (false);
-$number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
+//$username = $_SESSION['username'];
+//$listed_price = (isset($_POST['listed_price'])) ? ($_POST['listed_price']) : (false);
+//$number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
 
 // Check for User Login
 if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
@@ -28,12 +28,16 @@ if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
 }
 
 // Check for Data
+<<<<<<< Updated upstream
 if($item_id === false ||  $listed_price === false ||  $number_in_stock === false) {
+=======
+if(!($item_id)) {
+>>>>>>> Stashed changes
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Check ownership
 	// Write data to database
-	$query = "INSERT INTO sold_by (item_id, username, listed_price, number_in_stock) VALUES($item_id, '". $username . "', '" . $listed_price . "', $number_in_stock)";
+	$query = "UPDATE items I SET I.quantity_sold = I.quantity_sold + $number_in_stock WHERE I.item_id = $item_id";
 	if($databaseConnection->query($query)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
