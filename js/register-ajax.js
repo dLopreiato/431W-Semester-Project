@@ -9,13 +9,14 @@ function registerUser() {
 	var name = $('input:text[name=nam]').val();
 	var phone_number = $('input:text[name=phone_number]').val();
     var age = $('#age1').val();
+    var gender = $('input:text[name=gender]').val();
     var annual_income = $('#annualincome1').val();
 
     if(password != password2) {
         displayGeneralUserError("Passwords must match!");
     }
     else{
-        var sendData = {username: username, password: password, email: email, name: name, phone_number: phone_number, age: age, annual_income, annual_income};
+        var sendData = {username: username, password: password, email: email, name: name, phone_number: phone_number, age: age, gender: gender, annual_income, annual_income};
 
         console.log(sendData);
 
