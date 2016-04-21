@@ -27,7 +27,7 @@ if($username === false) {
 	$rentalResult = array();
 	
 	// get data from database
-	$query = "SELECT I.description, S.* FROM sales S, items I WHERE username = '$username' AND I.item_id = S.item_id";
+	$query = "SELECT I.description, S.* FROM sales S, items I WHERE S.username = '$username' AND I.item_id = S.item_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){

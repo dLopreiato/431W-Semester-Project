@@ -16,32 +16,38 @@ $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAM
 if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
+// check user loggin
+if (!isset($_SESSION['username'])) {
+    SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
+}
+
 // Put data in variables
-$item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
 $username = $_SESSION['username'];
+$item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
 $serial_number = (isset($_POST['serial_number'])) ? ($_POST['serial_number']) : (false);
 $rental_time_unit = (isset($_POST['rental_time_unit'])) ? ($_POST['rental_time_unit']) : (false);
 $price_listing = (isset($_POST['price_listing'])) ? ($_POST['price_listing']) : (false);
-
-// Check for User Login
-if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
-	SendSingleError(HTTP_INTERNAL_ERROR, 'no user logged in', ERRTXT_UNAUTHORIZED);
-}
 
 // Check for Data
 if($item_id === false ||  $serial_number === false ||  $rental_time_unit === false ||  $price_listing === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Check ownership
+    $ownershipCheck = "SELECT seller FROM items WHERE item_id='$item_id' AND seller='$username'";
+    if ($databaseConnection->query($ownershipCheck)->num_rows == 0) {
+        SendSingleError(HTTP_UNAUTHORIZED, 'this item does not belong to this seller', ERRTXT_UNAUTHORIZED);
+    }
+
 	// Write data to database
-	$query = "INSERT INTO rentables (item_id, serial_number, rental_in_days, rental_price, on_shelf, seller_username) VALUES($item_id, '" . $serial_number . "', '" . $rental_time_unit . "', '" . $price_listing . "', 1, '". $username . "',)";
-	if($databaseConnection->query($query)) { // If query was successful
+    $changeValuesQuery = "INSERT INTO rentables (item_id, serial_number, rental_in_days, rental_price, on_shelf) VALUES ($item_id, '$serial_number', $rental_time_unit, $price_listing, 1)"
+        . "ON DUPLICATE KEY UPDATE rental_in_days=$rental_time_unit, rental_price=$price_listing";
+	if($databaseConnection->query($changeValuesQuery)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
     } else {
-        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to post item for rental: ' . $query, ERRTXT_FAILED_QUERY);
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to post item for rental: ' . $changeValuesQuery, ERRTXT_FAILED_QUERY);
     }
 }
 

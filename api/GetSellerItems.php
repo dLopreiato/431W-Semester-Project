@@ -27,8 +27,13 @@ if($username === false) {
 	$auctioningResult = array();
 	$rentingResult = array();
 	
+	/* This is ultimately changing the behavior of this api call, to do something completely different. The reason I am
+	changing it is because the purpose of this call was to be so that the user who is posting an item to sell can see
+	all of the items they are allowed to sell. The behavior of what this WAS was showing all the postings already made.
+	Which worked perfectly when a posting correlated to the seller owning the object, but no longer applies.
+
 	// get data from database
-	$query = "SELECT I.*, S.listed_price, S.number_in_stock  FROM items I, sold_by S WHERE S.username='$username' AND S.item_id = I.item_id";	
+	$query = "SELECT I.*, S.listed_price, S.number_in_stock  FROM items I, sold_by S WHERE I.seller='$username' AND S.item_id = I.item_id";	
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
@@ -36,7 +41,7 @@ if($username === false) {
 		}
 	}
 	
-	$query = "SELECT I.*, A.reserve_price, A.number_in_stock  FROM items I, auctioned_by A WHERE A.username='$username' AND A.item_id = I.item_id";
+	$query = "SELECT I.*, A.reserve_price, A.number_in_stock  FROM items I, auctioned_by A WHERE I.seller='$username' AND A.item_id = I.item_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
@@ -44,7 +49,7 @@ if($username === false) {
 		}
 	}
 	
-	$query = "SELECT R.*, I.* FROM rentables R, items I WHERE R.seller_username='$username' AND R.item_id = I.item_id";
+	$query = "SELECT R.*, I.* FROM rentables R, items I WHERE I.seller='$username' AND R.item_id = I.item_id";
 	$data = $databaseConnection->query($query);
 	if ($data->num_rows > 0) {
 		while ($row =$data->fetch_assoc()){
@@ -52,7 +57,14 @@ if($username === false) {
 		}
 	}
 	
-	$result = array("selling" => $sellingResult,  "auctioning" => $auctioningResult, "renting" => $rentingResult);
+	$result = array("selling" => $sellingResult,  "auctioning" => $auctioningResult, "renting" => $rentingResult);*/
+
+	$sellerItemsQuery = "SELECT I.item_id, I.description, I.location, I.image, C.name FROM items I, categories C WHERE seller='$username' AND I.category_id=C.category_id";
+	$sellerItemsResults = $databaseConnection->query($sellerItemsQuery);
+	$result = array();
+	while ($row = $sellerItemsResults->fetch_assoc()) {
+		$result[] = $row;
+	}
 	
 	header(HTTP_OK);
 	header(API_RESPONSE_CONTENT);

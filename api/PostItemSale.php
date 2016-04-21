@@ -16,35 +16,37 @@ $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAM
 if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
-// Put data in variables
-$item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
-//$username = $_SESSION['username'];
-//$listed_price = (isset($_POST['listed_price'])) ? ($_POST['listed_price']) : (false);
-//$number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
-
-// Check for User Login
-if (!(isset($_SESSION['login']) && $_SESSION['login'] != '')) {
-	SendSingleError(HTTP_INTERNAL_ERROR, 'no user logged in', ERRTXT_UNAUTHORIZED);
+// check user loggin
+if (!isset($_SESSION['username'])) {
+    SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
 }
 
+// Put data in variables
+$username = $_SESSION['username'];
+$item_id = (isset($_POST['item_id'])) ? ($_POST['item_id']) : (false);
+$listed_price = (isset($_POST['listed_price'])) ? ($_POST['listed_price']) : (false);
+$number_in_stock = (isset($_POST['number_in_stock'])) ? ($_POST['number_in_stock']) : (false);
+
 // Check for Data
-<<<<<<< Updated upstream
 if($item_id === false ||  $listed_price === false ||  $number_in_stock === false) {
-=======
-if(!($item_id)) {
->>>>>>> Stashed changes
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
 	// Check ownership
+    $ownershipCheck = "SELECT seller FROM items WHERE item_id='$item_id' AND seller='$username'";
+    if ($databaseConnection->query($ownershipCheck)->num_rows == 0) {
+        SendSingleError(HTTP_UNAUTHORIZED, 'this item does not belong to this seller', ERRTXT_UNAUTHORIZED);
+    }
+
 	// Write data to database
-	$query = "UPDATE items I SET I.quantity_sold = I.quantity_sold + $number_in_stock WHERE I.item_id = $item_id";
-	if($databaseConnection->query($query)) { // If query was successful
+    $changeValuesQuery = "INSERT INTO sold_by (item_id, listed_price, number_in_stock) VALUES ($item_id, $listed_price, $number_in_stock)"
+        . "ON DUPLICATE KEY UPDATE listed_price=$listed_price, number_in_stock=$number_in_stock";
+	if($databaseConnection->query($changeValuesQuery)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);
     	exit;
     } else {
-        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to post item for sale: ' . $query, ERRTXT_FAILED_QUERY);
+        SendSingleError(HTTP_INTERNAL_ERROR, 'failed to post item for sale: ' . $changeValuesQuery, ERRTXT_FAILED_QUERY);
     }
 }
 

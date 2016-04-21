@@ -33,7 +33,8 @@ if($username === false || $amount === false ||  $item_id === false ||  $card_num
 	// Write data to database
 	$query1 = "INSERT INTO sales (amount, `time`, username, item_id, card_number, address_id) VALUES ($amount, NOW(), '$username', $item_id, $card_number, $address_id)";
     $query2 = "UPDATE sold_by SET number_in_stock=number_in_stock-1 WHERE item_id=$item_id";
-	if($databaseConnection->query( $query1) && $databaseConnection->query( $query2)) { // If query was successful
+    $query3 = "UPDATE sellers SET balance_due = balance_due+$amount WHERE username='(SELECT seller FROM items WHERE item_id=$item_id)'";
+	if($databaseConnection->query( $query1) && $databaseConnection->query( $query2) && $databaseConnection->query( $query3)) { // If query was successful
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);

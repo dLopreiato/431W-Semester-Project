@@ -30,10 +30,10 @@ if($username === false) {
 
 	if($sale_id != FALSE){
 		// find the item_id from the sale_id
-		$query1 = "SELECT S.item_id FROM sales S, sold_by O WHERE S.sale_id = $sale_id AND S.username = '$username' AND O.username = '$username'";
+		$query1 = "SELECT S.item_id FROM sales S, items I WHERE S.sale_id = $sale_id AND S.item_id=I.item_id AND I.seller = '$username'";
 
-		if(!($databaseConnection->query( $query1))) {
-			SendSingleError(HTTP_UNAUTHORIZED, "THIS AINT YOURS, BITCH.", ERRTXT_UNAUTHORIZED);
+		if($databaseConnection->query($query1)->num_rows == 0) {
+			SendSingleError(HTTP_UNAUTHORIZED, "this item is not sold by the logged in user", ERRTXT_UNAUTHORIZED);
 		}
 
 		// update sales set received to NOW() where sale_id
@@ -46,10 +46,11 @@ if($username === false) {
 
 	if($rental_id != FALSE){
 		// find the item_id from the sale_id
-		$query1 = "SELECT R.item_id FROM rental_transaction R, rentables E WHERE R.rental_id = $rental_id AND R.rented_out_to_username = '$username' AND E.seller_username = '$username'";
+		//$query1 = "SELECT R.item_id FROM rental_transaction R, rentables E WHERE R.rental_id = $rental_id AND R.rented_out_to_username = '$username' AND E.seller_username = '$username'";
+		$query1 = "SELECT R.item_id FROM rental_transaction R, items I WHERE R.rental_id=$rental_id AND R.item_id=I.item_id AND I.seller='$username'";
 	
-		if(!($databaseConnection->query( $query1))) {
-			SendSingleError(HTTP_UNAUTHORIZED, "THIS AINT YOURS, BITCH.", ERRTXT_UNAUTHORIZED);
+		if($databaseConnection->query($query1)->num_rows == 0) {
+			SendSingleError(HTTP_UNAUTHORIZED, "this item is not sold by the logged in user", ERRTXT_UNAUTHORIZED);
 		}
 
 		// update sales set received to NOW() where sale_id
