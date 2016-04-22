@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         success: function(data) {
             console.log(data);
-            updateProductInformation(data['description'], 'img/' + data['image']);
+            updateProductInformation(data['description'], data['image']);
             retrieveAndUpdateCategoryInformation(data['category_id']);
             retreiveAndUpdateReviews(productId);
             retreiveAndUpdateRatings(productId);
@@ -199,6 +199,9 @@ function submitPurchase() {
 }
 
 function updateProductInformation(name, image) {
+    if (image.substring(0, 4) != "http"){
+        image = 'img/' + image;
+    }
     document.title = name + ' | #90s Kids R Us';
     $("#productName").html(name);
     document.getElementById("productImage").src = image;
