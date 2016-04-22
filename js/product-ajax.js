@@ -1,3 +1,5 @@
+var modalsUpdated = false;
+
 $(document).ready(function () {
     var productId = $.urlParam('id');
 
@@ -131,6 +133,71 @@ function submitReview() {
     });
 }
 
+function updateModals() {
+    if (!modalsUpdated) {
+        $.ajax({
+            url: PROTOCOL + ROOT_DIRECTORY + '/api/GetCards.php',
+            dataType: 'json',
+            method: 'GET',
+
+            success: function(data) {
+                for (dataKey in data) {
+                    $('#purchase-creditCard').append('<option value="' + data[dataKey]['card_number'] + '">XXXX-XXXX-XXXX-' + data[dataKey]['card_number'].substring(12) + '</option>');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
+                for (var key in serverErrorInfo) {
+                    displayModalUserError(serverErrorInfo[key]['userErrorText']);
+                    console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
+                }
+            }
+        });
+        $.ajax({
+            url: PROTOCOL + ROOT_DIRECTORY + '/api/GetAddresses.php',
+            dataType: 'json',
+            method: 'GET',
+
+            success: function(data) {
+                for (dataKey in data) {
+                    $('#purchase-address').append('<option value="' + data[dataKey]['address_id'] + '">' + data[dataKey]['shipping_name'] + '</option>');
+                }
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
+                for (var key in serverErrorInfo) {
+                    displayModalUserError(serverErrorInfo[key]['userErrorText']);
+                    console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
+                }
+            }
+        });
+        modalsUpdated = true;
+    }
+}
+
+function submitPurchase() {
+    var credit_card = document.getElementById('purchase-creditCard').value;
+    var address_id = document.getElementById('purchase-address').value;
+    var item_id = $.urlParam('id');
+    $.ajax({
+        url: PROTOCOL + ROOT_DIRECTORY + '/api/Purchase.php',
+        dataType: 'json',
+        data: {'item_id': item_id, 'address_id': address_id, 'card_number': credit_card},
+        method: 'GET',
+
+        success: function(data) {
+            displayUserSuccess('Thank you for your purchase!');
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
+            for (var key in serverErrorInfo) {
+                displayGeneralUserError(serverErrorInfo[key]['userErrorText']);
+                console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
+            }
+        }
+    });
+}
+
 function updateProductInformation(name, image) {
     document.title = name + ' | #90s Kids R Us';
     $("#productName").html(name);
@@ -166,6 +233,11 @@ $.urlParam = function(name){
 function displayGeneralUserError(textToDisplay) {
     var divText = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + textToDisplay + '</div>';
     $('#error-view').append(divText);
+}
+
+function displayModalUserError(textToDisplay) {
+   var divText = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + textToDisplay + '</div>';
+   $('.modal-error').append(divText);
 }
 
 function displayUserSuccess(textToDisplay) {
