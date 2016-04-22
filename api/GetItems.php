@@ -41,7 +41,7 @@ function getItemsInCategory($databaseConnection, $category_id) {
     else
     {
 		$result = array();
-        $query = "SELECT * FROM items WHERE category_id = '$category_id' ";
+        $query = "SELECT I.*, C.name FROM items I, categories C WHERE I.category_id = '$category_id' AND I.category_id = C.category_id";
 		$data = $databaseConnection->query($query);
 	
 		if ($data->num_rows > 0 ) {
@@ -65,14 +65,14 @@ $category_id = (isset($_GET['category_id'])) ? ($_GET['category_id']) : (false);
 
 //If no category_id specified, return all items
 if($category_id === false) {
-	$query = "SELECT * FROM items";
+	$query = "SELECT I.*, C.name FROM items I, categories C WHERE C.category_id = I.category_id ";
 	$data = $databaseConnection->query($query);
 
 	if ($data->num_rows > 0) {
-		
+
 		$result = array();
 		while ($row =$data->fetch_assoc()){
-			$result[] = $row;
+			$result[] = array_map('utf8_encode', $row);
 		}
 		
 		header(HTTP_OK);
