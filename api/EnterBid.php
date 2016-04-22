@@ -11,6 +11,7 @@ $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAM
 if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
+$databaseConnection->set_charset(MYSQL_CHARSET);
 // Put data in variables  item_id, amount, address_id, card_number
 $username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 $bid_id = 0;

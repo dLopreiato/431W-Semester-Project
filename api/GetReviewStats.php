@@ -15,6 +15,7 @@ $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAM
 if ($databaseConnection->connect_errno != 0) {
     SendSingleError(HTTP_INTERNAL_ERROR, $databaseConnection->connect_error, ERRTXT_DBCONN_FAILED);
 }
+$databaseConnection->set_charset(MYSQL_CHARSET);
 
 // Put data in variables
 $item_id = (isset($_GET['item_id'])) ? ($_GET['item_id']) : (false);
