@@ -39,54 +39,129 @@
                 </ul>
                 <div class="navbar-form navbar-left" role="search">
                     <div class="form-group">
+                        <input name="searchBar" type="text" class="form-control" placeholder="Search">
                     </div>
-                    <button type="submit" class="btn btn-default" onclick="submitSearch();">Filter</button>
+                    <button type="submit" class="btn btn-default" onclick="submitSearch();">Find</button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!--div class="container">
+    <div class="container">
+	<div id="error-view">
+    </div>
+	
+		<div class="row">
+		  <div class="col-md-3">
+				<div class="input-group">
+						  <label for="item_category">Item Category</label>
+						 <select class="form-control" id="itemCategory1">
+							<option value="-1">Please Select</option>
+							 <option value="0">Toys</option>
+							 <option value="1">Music</option>
+							 <option value="2">Movies</option>
+							 <option value="3">Clothing</option>
+							 <option value="4">Accessories</option>
+							<option value="5">Games</option>
+						  </select>
+					</div>
+				</div>
+				<div class="col-md-3">
+				<div class="input-group">
+						  <label for="item_category">Subcategory 1</label>
+						 <select class="form-control" id="itemCategory1">
+							<option value="-1">Please Select</option>
+							 <option value="0">Toys</option>
+							 <option value="1">Music</option>
+							 <option value="2">Movies</option>
+							 <option value="3">Clothing</option>
+							 <option value="4">Accessories</option>
+							<option value="5">Games</option>
+						  </select>
+					</div>
+				</div>
+				<div class="col-md-3">
+				<div class="input-group">
+						  <label for="item_category">Subcategory's Subcategory</label>
+						 <select class="form-control" id="itemCategory1">
+							<option value="-1">Please Select</option>
+							 <option value="0">Toys</option>
+							 <option value="1">Music</option>
+							 <option value="2">Movies</option>
+							 <option value="3">Clothing</option>
+							 <option value="4">Accessories</option>
+							<option value="5">Games</option>
+						  </select>
+					</div>
+				</div>
+				<div class="col-md-3">
+				<div class="input-group">
+						  <label for="item_category">The subbiest of categories</label>
+						 <select class="form-control" id="itemCategory1">
+							<option value="-1">Please Select</option>
+							 <option value="0">Toys</option>
+							 <option value="1">Music</option>
+							 <option value="2">Movies</option>
+							 <option value="3">Clothing</option>
+							 <option value="4">Accessories</option>
+							<option value="5">Games</option>
+						  </select>
+					</div>
+				</div>
+		</div>
+		<br>
+		<br>
+		
+		<h1>Filtered Results</h1>
+		<div id = "noResults" style="display:none">
+			<br>
+			<h4>Sorry, we couldn't find anything.  Try some different categories.</h4>
+		</div>
+		
+		<br>
+		
+		<div class="row">
+             <div class="col-md-3">
+                 <div class="thumbnail">
+                     <img src="img/AaronsParty.jpg" alt="...">
+                      <div class="caption">
+                         <h4>Product Title</h4>
+                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$10</b><p>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3">
+                 <div class="thumbnail">
+                     <img src="img/BackstreetBoys.jpg" alt="...">
+                      <div class="caption">
+                         <h4>Product Title</h4>
+                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$70</b><p>
+                     </div>
+                 </div>
+             </div>
+                        <div class="col-md-3">
+                 <div class="thumbnail">
+                     <img src="img/DreamStreet.jpg" alt="...">
+                      <div class="caption">
+                         <h4>Product Title</h4>
+                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>Bid Now!</b><p>
+                     </div>
+                 </div>
+             </div>
+             <div class="col-md-3">
+                 <div class="thumbnail">
+                     <img src="img/GoodVibrations.jpg" alt="...">
+                      <div class="caption">
+                         <h4>Product Title</h4>
+                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>Rent for $10</b><p>
+                     </div>
+                 </div>
+             </div>
+         </div>
         
-    <div class=bs-example data-example-id=thumbnails-with-custom-content> 
-      <div class=row> 
-        <div class="col-sm-6 col-md-4"> 
-          <div class=thumbnail> 
-            <img class="media-object" src="img/10Things.jpg" alt="10 Things I Hate About You" width="200" height="200"> 
-            <div class=caption> <h3>10 Things I Hate About You</h3> <p>Kat Stratford (Julia Stiles) is beautiful, smart and quite abrasive to most of her fellow teens, meaning that she doesn't attract many boys. Unfortunately for her younger sister, Bianca (Larisa Oleynik), house rules say that she can't date until Kat has a boyfriend, so strings are pulled to set the dour damsel up for a romance. Soon Kat crosses paths with handsome new arrival Patrick Verona (Heath Ledger). Will Kat let her guard down enough to fall for the effortlessly charming Patrick?</p> 
-            </div> 
-          </div> 
-        </div>
-        <div class="col-sm-6 col-md-4"> 
-          <div class=thumbnail> 
-            <img class="media-object" src="img/jellySandals.jpg" alt="Jelly Sandals!" width="200" height="200"> 
-            <div class=caption> <h3>Jelly Sandals</h3> <p>Can't live with them, can't live without them. Why not get a super stlyish pair of jelly sandals? There's a color for every occasion!</p> 
-            </div> 
-          </div> 
-        </div>
-        <div class="col-sm-6 col-md-4"> 
-          <div class=thumbnail> 
-            <img class="media-object" src="img/VHS.jpg" alt="VHS Player" width="200" height="200">  <div class=caption> <h3>VHS Player</h3> <p>Buy one of these blasts from the past to watch any of your favorite cassets! But don't forget... Be kind, rewind.</p> 
-            </div> 
-          </div>
-        </div>
-      </div>
+
     </div>
 
-    </div-->
-
-    <div class="container col-sm-offset-4">
-    <div id="error-view">
-    </div>
-        <h1>Filtered Results</h1>
-        <div id = "noResults" style="display:none">
-            <br>
-            <h4>Sorry, we couldn't find anything.  Try some different categories.</h4>
-        </div>
-        <div class="row" id = "search-results">
-            <!--populated by search-results-ajax.js-->
-        </div>  
-    </div>
 
     <footer class="footer">
         <div class="container">
