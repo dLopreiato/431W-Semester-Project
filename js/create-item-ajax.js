@@ -102,7 +102,7 @@ $(document).on("change", '#itemSubcategory1', function(e) {
 		var categoryID = $(this).val();
 		var sendData = {category_id: categoryID};
 		$('#subcategory2').hide();
-		$('#subcategory3').hide
+		$('#subcategory3').hide();
 		$('#br2').hide();
 		$('#br3').hide();
 		

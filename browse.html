@@ -48,8 +48,8 @@
     </nav>
 
     <div class="container">
-	<div id="error-view">
-    </div>
+		<div id="error-view">
+		</div>
 	
 		<div class="row">
 		  <div class="col-md-3">
@@ -67,49 +67,27 @@
 					</div>
 				</div>
 				<div class="col-md-3">
-				<div class="input-group">
-						  <label for="item_category">Subcategory 1</label>
-						 <select class="form-control" id="itemCategory1">
-							<option value="-1">Please Select</option>
-							 <option value="0">Toys</option>
-							 <option value="1">Music</option>
-							 <option value="2">Movies</option>
-							 <option value="3">Clothing</option>
-							 <option value="4">Accessories</option>
-							<option value="5">Games</option>
-						  </select>
+					<div class="input-group" id="subcategory1">
+					<label for="item_category">Item Subcategory</label>
+						<select class="form-control" id="itemSubcategory1">
+						</select>
 					</div>
 				</div>
 				<div class="col-md-3">
-				<div class="input-group">
-						  <label for="item_category">Subcategory's Subcategory</label>
-						 <select class="form-control" id="itemCategory1">
-							<option value="-1">Please Select</option>
-							 <option value="0">Toys</option>
-							 <option value="1">Music</option>
-							 <option value="2">Movies</option>
-							 <option value="3">Clothing</option>
-							 <option value="4">Accessories</option>
-							<option value="5">Games</option>
-						  </select>
+					<div class="input-group" id="subcategory2">
+					<label for="item_category">Item Subcategory</label>
+						<select class="form-control" id="itemSubcategory2">
+						</select>
 					</div>
 				</div>
 				<div class="col-md-3">
-				<div class="input-group">
-						  <label for="item_category">The subbiest of categories</label>
-						 <select class="form-control" id="itemCategory1">
-							<option value="-1">Please Select</option>
-							 <option value="0">Toys</option>
-							 <option value="1">Music</option>
-							 <option value="2">Movies</option>
-							 <option value="3">Clothing</option>
-							 <option value="4">Accessories</option>
-							<option value="5">Games</option>
-						  </select>
+					<div class="input-group" id="subcategory3">
+					<label for="item_category">Item Subcategory</label>
+						<select class="form-control" id="itemSubcategory3">
+						</select>
 					</div>
 				</div>
 		</div>
-		<br>
 		<br>
 		
 		<h1>Filtered Results</h1>
@@ -120,46 +98,10 @@
 		
 		<br>
 		
-		<div class="row">
-             <div class="col-md-3">
-                 <div class="thumbnail">
-                     <img src="img/AaronsParty.jpg" alt="...">
-                      <div class="caption">
-                         <h4>Product Title</h4>
-                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$10</b><p>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-3">
-                 <div class="thumbnail">
-                     <img src="img/BackstreetBoys.jpg" alt="...">
-                      <div class="caption">
-                         <h4>Product Title</h4>
-                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>$70</b><p>
-                     </div>
-                 </div>
-             </div>
-                        <div class="col-md-3">
-                 <div class="thumbnail">
-                     <img src="img/DreamStreet.jpg" alt="...">
-                      <div class="caption">
-                         <h4>Product Title</h4>
-                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>Bid Now!</b><p>
-                     </div>
-                 </div>
-             </div>
-             <div class="col-md-3">
-                 <div class="thumbnail">
-                     <img src="img/GoodVibrations.jpg" alt="...">
-                      <div class="caption">
-                         <h4>Product Title</h4>
-                         <p style ="float: left;">Music</p> <p style ="text-align: right;"><b>Rent for $10</b><p>
-                     </div>
-                 </div>
-             </div>
+		<div class="row"  id="filtered-results">
+            <!--Populated by browse-ajax.js-->
          </div>
-        
-
+		 
     </div>
 
 
