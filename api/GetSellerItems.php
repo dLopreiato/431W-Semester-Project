@@ -1,13 +1,15 @@
 <?php
 /*
-Input: 1 GET parameter - username of the seller
-Process:  Gets all the items the user sells, auctions, or rents
+Input: no parameters
+Process:  Gets all the items the current user has in the items table
 Output: An array of all the items that belong to this user
 */
 require_once('../lib/config.php');
 require_once('../lib/http_headers.php');
 require_once('../lib/api_common_error_text.php');
 require_once('../lib/api_error_functions.php');
+
+session_start();
 
 
 // Set Up the Database Connection
@@ -18,10 +20,10 @@ if ($databaseConnection->connect_errno != 0) {
 $databaseConnection->set_charset(MYSQL_CHARSET);
 
 // Put data in variables
-$username = (isset($_GET['username'])) ? ($_GET['username']) : (false);
+$username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
 
 if($username === false) {
-	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
+	SendSingleError(HTTP_UNAUTHORIZED, 'no user is logged in', ERRTXT_UNAUTHORIZED);
 } else {
 	
 	$sellingResult = array();
