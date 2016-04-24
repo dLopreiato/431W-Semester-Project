@@ -9,6 +9,7 @@ require_once('../lib/http_headers.php');
 require_once('../lib/api_common_error_text.php');
 require_once('../lib/api_error_functions.php');
 
+session_start();
 
 // Set Up the Database Connection
 $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
@@ -21,7 +22,10 @@ $databaseConnection->set_charset(MYSQL_CHARSET);
 $username = (isset($_GET['username'])) ? ($_GET['username']) : (false);
 
 // Check for Data
-if($username === false) {
+if($username === false ) {
+	$username = (isset($_SESSION['username'])) ? ($_SESSION['username']) : (false);
+}
+if ($username === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
 	// get data from database

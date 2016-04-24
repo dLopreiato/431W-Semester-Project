@@ -4,13 +4,29 @@ $(document).ready(function() {
 });
 
 function displayHeading(){
-	var appendString = '<h1 class="media-heading">' + $.urlParam('username') + '\'s Badges</h1>';
+	
+	var username = $.urlParam('username');
+	var appendString = "";
+	
+	if (username == ""){
+		appendString = '<h1 class="media-heading">My Badges</h1>'; 
+	}
+	else{
+		appendString = '<h1 class="media-heading">' + $.urlParam('username') + '\'s Badges</h1>';
+	}
 	$('#name-heading').append(appendString);
 }
 
 function populateBadges(){
-    var sendData = {username:$.urlParam('username')};
-
+	
+    var sendData = {};
+	
+	var urlUsername = $.urlParam('username');
+	
+	if (urlUsername != ""){
+		sendData = {username: urlUsername};
+	}
+	
     $.ajax({
         url: PROTOCOL + ROOT_DIRECTORY + '/api/GetUserBadges.php',
         dataType: 'json',
@@ -18,8 +34,8 @@ function populateBadges(){
         method: 'GET',
         success: function(data) {
             // data is array of username, badge_id, units_earned, last updated
-            if (!data) {
-                displayGeneralUserError('You currently have earned no badges.');
+            if (data.length == 0) {
+				showNoBadges();
             }
             else {
                 $.each(data, function (i, item) {
@@ -37,10 +53,20 @@ function populateBadges(){
     });
 }
 
+function showNoBadges(){
+	var appendString = '<h4>Sorry, you haven\'t earned any badges yet.  Try making some more purchases and coming back later!</h4>';
+    $('#earned-badges').append(appendString);
+}
+
 
 $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    return results[1] || 0;
+	if (results == null){
+		return "";
+	}
+	else{
+		return results[1];
+	}
 }
 
 function addBadgeToTable(badgeID, unitsEarned, totalUnits, lastUpdated, badgeTitle, badgeImage, badgeDescription) {
