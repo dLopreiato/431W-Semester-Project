@@ -18,7 +18,6 @@ function populateResults() {
 					var rand1 = Math.floor((Math.random() * (data.length-1)));
 					var item1 = data[rand1];
 					var itemCost1;
-					console.log(item1.description);
 					$.ajax({
 						url: PROTOCOL + ROOT_DIRECTORY + '/api/GetItemCost.php',
 						dataType: 'json',
