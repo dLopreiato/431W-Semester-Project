@@ -9,6 +9,8 @@ require_once('../lib/http_headers.php');
 require_once('../lib/api_common_error_text.php');
 require_once('../lib/api_error_functions.php');
 
+// we're doing this for badges
+session_start();
 
 // Set Up the Database Connection
 $databaseConnection = new mysqli(MYSQL_HOST, MYSQL_USER, MYSQL_PASS, MYSQL_DBNAME);
@@ -29,9 +31,20 @@ if($term === false) {
 	$query = "SELECT I.item_id, I.description, I.image, I.category_id, C.name FROM items I, categories C WHERE C.category_id = I.category_id AND I.description LIKE '%$term%'";
 
 	if($result = $databaseConnection->query( $query)) { // If query was successful
+        if (isset($_SESSION['username'])) {
+            // badge 4 (inspector gadget)
+            $username = $_SESSION['username'];
+            $badgeQuery = "INSERT INTO badge_progresses (username, badge_id, units_earned, last_updated) VALUES ('$username', 4, 1, NOW())";
+            $databaseConnection->query($badgeQuery);
+        }
+
+        $content = array();
+        while ($row = $result->fetch_assoc()) {
+            $content[] = $row;
+        }
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
-    	echo json_encode($result->fetch_all(MYSQLI_ASSOC));
+    	echo json_encode($content);
     	exit;
     } else {
         SendSingleError(HTTP_INTERNAL_ERROR, /*'failed to complete purchase transaction.'*/$databaseConnection->error, ERRTXT_FAILED_QUERY);

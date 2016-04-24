@@ -28,6 +28,10 @@ if($username === false ) {
 if ($username === false){
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_UNSETVARIABLE);
 } else {
+	//badge 1 (Pass 431w)
+	$badgeQuery = "INSERT INTO badge_progresses (username, badge_id, units_earned, last_updated) VALUES ('$username', 1, 1, NOW()) ON DUPLICATE KEY UPDATE last_updated=NOW(), units_earned=if(units_earned+1 > 2, 2, units_earned+1)";
+	$databaseConnection->query($badgeQuery);
+
 	// get data from database
 	$query = "SELECT * FROM badge_progresses P, badges B WHERE P.username = '$username' AND B.badge_id = P.badge_id AND P.units_earned > 0";
 	$data = $databaseConnection->query($query);
@@ -41,7 +45,7 @@ if ($username === false){
 	} else  {
 		$result = array();
 	}
-	
+
 	header(HTTP_OK);
 	header(API_RESPONSE_CONTENT);
 	echo json_encode($result);
