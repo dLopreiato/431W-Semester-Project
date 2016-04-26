@@ -36,6 +36,16 @@ if($username === false ||  $item_id === false ||  $card_number === false ||  $ad
     $query2 = "UPDATE sold_by SET number_in_stock=number_in_stock-1 WHERE item_id=$item_id";
     $query3 = "UPDATE sellers SET balance_due = balance_due+(SELECT listed_price FROM sold_by WHERE item_id=$item_id) WHERE username='(SELECT seller FROM items WHERE item_id=$item_id)'";
 	if($databaseConnection->query( $query1) && $databaseConnection->query( $query2) && $databaseConnection->query( $query3)) { // If query was successful
+        // badge 2 (Santa Claus)
+        if (date('n') == '12') {
+            $badgeQuery = "INSERT INTO badge_progresses (username, badge_id, units_earned, last_updated) VALUES ('$username', 2, 1, NOW()) ON DUPLICATE KEY UPDATE last_updated=NOW(), units_earned=if(units_earned+1 > 5, 5, units_earned+1)";
+            $databaseConnection->query($badgeQuery);
+        }
+        // badge 3 (My Valentine)
+        if (date('n') == '2') {
+            $badgeQuery = "INSERT INTO badge_progresses (username, badge_id, units_earned, last_updated) VALUES ('$username', 3, 1, NOW()) ON DUPLICATE KEY UPDATE last_updated=NOW(), units_earned=if(units_earned+1 > 3, 3, units_earned+1)";
+            $databaseConnection->query($badgeQuery);
+        }
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);

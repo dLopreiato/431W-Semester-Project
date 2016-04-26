@@ -27,8 +27,12 @@ function submitNewItem() {
 	else if ($('#itemCategory1 option:selected').val() != -1){
 		categoryID = $('#itemCategory1 option:selected').val();
 	}
+	
+	if (image == ""){
+		image = "noImageAvailable.png"
+	}
 		
-	if (categoryID !=  -1 && description != "" && location != "" && image != ""){
+	if (categoryID !=  -1 && description != "" && location != ""){
 	
 		var sendData = {description: description, location: location, category_id: categoryID, image: image};
 

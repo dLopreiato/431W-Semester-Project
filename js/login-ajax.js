@@ -9,7 +9,7 @@ function submitLoginCredentials() {
         method: 'GET',
         success: function(data) {
             if (data) {
-                window.location.href = PROTOCOL + ROOT_DIRECTORY;
+                window.location.href = PROTOCOL + ROOT_DIRECTORY + '/account.html';
             }
             else {
                 displayGeneralUserError('This username/password is not correct.');
@@ -26,5 +26,6 @@ function submitLoginCredentials() {
 }
 
 function displayGeneralUserError(textToDisplay) {
-    $('#error-view').append(textToDisplay);
+	var divText = '<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + textToDisplay + '</div>';
+    $('#error-view').append(divText);
 }

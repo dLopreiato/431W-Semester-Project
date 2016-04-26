@@ -35,6 +35,10 @@ if($item_id === false || $star_rating === false) {
 	// Write data to database
 	$query = "INSERT INTO ratings (item_id, star_ranking, description, review_date, username) VALUES($item_id, $star_rating, '$description', NOW(), '$username')";
 	if($databaseConnection->query($query)) { // If query was successful
+        // update badge 5 (Loud Mouth)
+        $badgeQuery = "INSERT INTO badge_progresses (username, badge_id, units_earned, last_updated) VALUES ('$username', 5, 1, NOW()) ON DUPLICATE KEY UPDATE last_updated=NOW(), units_earned=if(units_earned+1 > 5, 5, units_earned+1)";
+        $databaseConnection->query($badgeQuery);
+
 		header(HTTP_OK);
 		header(API_RESPONSE_CONTENT);
     	echo json_encode(TRUE);

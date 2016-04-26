@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         success: function(data) {
             console.log(data);
-            updateProductInformation(data['description'], 'img/' + data['image']);
+            updateProductInformation(data['description'], data['image']);
             retrieveAndUpdateCategoryInformation(data['category_id']);
             retreiveAndUpdateReviews(productId);
             retreiveAndUpdateRatings(productId);
@@ -23,6 +23,7 @@ $(document).ready(function () {
             }
             if (data['rentables'] != null) {
                 updateRentalOptions(data['rentables'][0]['rental_price']);
+                updateRentables(data['rentables']);
             }
 
         },
@@ -143,6 +144,8 @@ function updateModals() {
             success: function(data) {
                 for (dataKey in data) {
                     $('#purchase-creditCard').append('<option value="' + data[dataKey]['card_number'] + '">XXXX-XXXX-XXXX-' + data[dataKey]['card_number'].substring(12) + '</option>');
+                    $('#rent-creditCard').append('<option value="' + data[dataKey]['card_number'] + '">XXXX-XXXX-XXXX-' + data[dataKey]['card_number'].substring(12) + '</option>');
+                    $('#bid-creditCard').append('<option value="' + data[dataKey]['card_number'] + '">XXXX-XXXX-XXXX-' + data[dataKey]['card_number'].substring(12) + '</option>');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -161,6 +164,8 @@ function updateModals() {
             success: function(data) {
                 for (dataKey in data) {
                     $('#purchase-address').append('<option value="' + data[dataKey]['address_id'] + '">' + data[dataKey]['shipping_name'] + '</option>');
+                    $('#rent-address').append('<option value="' + data[dataKey]['address_id'] + '">' + data[dataKey]['shipping_name'] + '</option>');
+                    $('#bid-address').append('<option value="' + data[dataKey]['address_id'] + '">' + data[dataKey]['shipping_name'] + '</option>');
                 }
             },
             error: function(xhr, ajaxOptions, thrownError) {
@@ -198,7 +203,59 @@ function submitPurchase() {
     });
 }
 
+function submitRental() {
+    var credit_card = document.getElementById('rent-creditCard').value;
+    var address_id = document.getElementById('rent-address').value;
+    var serial = document.getElementById('rent-serial').value;
+    var item_id = $.urlParam('id');
+    $.ajax({
+        url: PROTOCOL + ROOT_DIRECTORY + '/api/Rent.php',
+        dataType: 'json',
+        data: {'item_id': item_id, 'address_id': address_id, 'card_number': credit_card, 'serial_number': serial},
+        method: 'GET',
+
+        success: function(data) {
+            displayUserSuccess('Thank you for your rental!');
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
+            for (var key in serverErrorInfo) {
+                displayGeneralUserError(serverErrorInfo[key]['userErrorText']);
+                console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
+            }
+        }
+    });
+}
+
+function submitBid() {
+    var credit_card = document.getElementById('bid-creditCard').value;
+    var address_id = document.getElementById('bid-address').value;
+    var amount = document.getElementById('bid-amount').value;
+    var item_id = $.urlParam('id');
+    $.ajax({
+        url: PROTOCOL + ROOT_DIRECTORY + '/api/EnterBid.php',
+        dataType: 'json',
+        data: {'item_id': item_id, 'address_id': address_id, 'card_number': credit_card, 'amount': amount},
+        method: 'GET',
+
+        success: function(data) {
+            displayUserSuccess('Thank you for your bid!');
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+            var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
+            for (var key in serverErrorInfo) {
+                displayGeneralUserError(serverErrorInfo[key]['userErrorText']);
+                console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
+            }
+        }
+    });
+}
+
+
 function updateProductInformation(name, image) {
+    if (image.substring(0, 4) != "http"){
+        image = 'img/' + image;
+    }
     document.title = name + ' | #90s Kids R Us';
     $("#productName").html(name);
     document.getElementById("productImage").src = image;
@@ -219,6 +276,12 @@ function updateRentalOptions(lateFee) {
     $('#unavailableNotice').hide();
     $('#rentalOptions').removeClass('hidden');
     $('#rentalOptions h4 span').html(lateFee);
+}
+
+function updateRentables(rentables) {
+    for (rentalIndex in rentables) {
+        $('#rent-serial').append('<option value="' + rentables[rentalIndex]['serial_number'] + '">' + rentables[rentalIndex]['rental_in_days'] + ' Day Rental - $' + rentables[rentalIndex]['rental_price'] + ' Late Fee</option>');
+    }
 }
 
 function addReview(rating, text) {
