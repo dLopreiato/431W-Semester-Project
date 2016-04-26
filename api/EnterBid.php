@@ -21,13 +21,19 @@ $address_id = (isset($_GET['address_id'])) ? ($_GET['address_id']) : (false);
 
 // Check for User Login
 if (!(isset($_SESSION['username']))) {
-	SendSingleError(HTTP_INTERNAL_ERROR, 'no user logged in', ERRTXT_UNAUTHORIZED);
+	SendSingleError(HTTP_UNAUTHORIZED, 'no user logged in', ERRTXT_UNAUTHORIZED);
 }
 
 // Check for Data
 if($item_id === false || $amount === false || $card_number === false || $address_id === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "one or more fields not found", ERRTXT_ID_NOT_FOUND);
 } else {
+    $shadyQuery = "SELECT item_id FROM items WHERE item_id=$item_id AND seller='$username'";
+    $shadyResults = $databaseConnection->query($shadyQuery);
+    if ($shadyResults->num_rows >= 1) {
+        SendSingleError(HTTP_UNAUTHORIZED, 'users own item', ERRTXT_UNAUTHORIZED);
+    }
+
 	// Write data to database
 	$query = "INSERT INTO bids (amount, time, username, item_id, card_number, address_id) VALUES('$amount', NOW() , '$username', $item_id, $card_number, $address_id)";
 	if($databaseConnection->query($query)) { // If query was successful
