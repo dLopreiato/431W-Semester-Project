@@ -32,7 +32,7 @@ if ($data->num_rows > 0) {
 	    $s = $result['sales'];
 	    $p = $result['parent'];
 
-	    $query = "SELECT COUNT(*) FROM sales WHERE item_id IN (SELECT item_id FROM items WHERE category_id = $c);";
+	    $query = "SELECT COUNT(*) FROM sales WHERE time >= (SELECT DATE_SUB(NOW(), INTERVAL 7 DAY)) AND item_id IN (SELECT item_id FROM items WHERE category_id = $c);";
 	    $s = $databaseConnection->query($query);
 	}
 
