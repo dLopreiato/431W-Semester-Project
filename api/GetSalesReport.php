@@ -16,7 +16,7 @@ if ($databaseConnection->connect_errno != 0) {
 }
 $databaseConnection->set_charset(MYSQL_CHARSET);
 
-$query = "SELECT category_id, name, parent FROM categories";
+$query = "SELECT category_id, name, parent AS sales, parent FROM categories;";
 $data = $databaseConnection->query($query);
 
 if ($data->num_rows > 0) {
@@ -29,10 +29,11 @@ if ($data->num_rows > 0) {
 	foreach ($categories as $result) {
 	    $c = $result['category_id'];
 	    $n = $result['name'];
+	    $s = $result['sales'];
 	    $p = $result['parent'];
 
-	    $query = "SELECT COUNT(*) FROM sales WHERE item_id = (SELECT item_id FROM items WHERE category_id = $c)";
-	    $n = $databaseConnection->query($query);
+	    $query = "SELECT COUNT(*) FROM sales WHERE item_id IN (SELECT item_id FROM items WHERE category_id = $c);";
+	    $s = $databaseConnection->query($query);
 	}
 
 	header(HTTP_OK);
