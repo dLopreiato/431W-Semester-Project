@@ -75,7 +75,7 @@ function addBadgeToTable(badgeID, unitsEarned, totalUnits, lastUpdated, badgeTit
 	
     var appendString = '<div class="media"><div class="media-left media-middle"><a href="#"><img class="media-object" src="' + badgeImage + '" alt="' + badgeTitle + '" width="200" height="200"></a></div><div class="media-body">';
 	
-	appendString += '<h3 class="media-heading">' + badgeTitle + '</h3><br><p>' + badgeDescription + '</p><p>' + unitsEarned + '/' + totalUnits + ' Purchaces Complete </p><p>Last Updated: ' + lastUpdated;
+	appendString += '<h3 class="media-heading">' + badgeTitle + '</h3><br><p>' + badgeDescription + '</p><p>' + unitsEarned + '/' + totalUnits + ' Complete </p><p>Last Updated: ' + lastUpdated;
 	appendString += '</p><div class="progress"><div class="';
 	
 	if (percentage < 100){
