@@ -68,12 +68,19 @@ body {
 }
 
 /* Product images */
+.thumbnail {
+  min-height: 400px;
+  max-height: 400px;
+}
+
 .product-image {
     position:relative;
+    min-height: 300px;
 }
 .product-image img {
     width:100%;
-    vertical-align:top;
+    vertical-align:middle;
+    max-height: 260px;
 }
 
 .product-image:after, .product-image:before {

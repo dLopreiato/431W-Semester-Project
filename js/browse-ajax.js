@@ -80,7 +80,7 @@ function addItem(itemID, image, description, category, itemCost){
 	if (image.substring(0, 4) != "http"){
 		appendString += 'img/';
 	}
-	appendString += image + '"></div></a><div class="caption"><h4>' + description + '</h4><p style ="float: left;">' + category  + '</p>';
+	appendString += image + '"></div></a><div class="caption"><h5>' + description + '</h5><p style ="float: left;">' + category  + '</p>';
 	appendString += '<p style ="text-align: right;"><b>' + itemCost + '</b><p></div></div></div>'
 	
 	$('#filtered-results').append(appendString);
