@@ -9,7 +9,6 @@ function populateResults() {
 	
 	var categoryID = -1;
 	var urlCategoryID = location.search.split('id=')[1];
-	console.log(urlCategoryID);
 	
 	if  ($('#subcategory3').is(":visible") && $('#subcategory3 option:selected').val() >=0){
 		categoryID = $('#subcategory3 option:selected').val();
