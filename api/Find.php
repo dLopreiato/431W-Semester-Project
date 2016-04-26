@@ -28,7 +28,33 @@ $term = (isset($_GET['term'])) ? ($_GET['term']) : (false);
 if($term === false) {
 	SendSingleError(HTTP_BAD_REQUEST, "bad term.", ERRTXT_ID_NOT_FOUND);
 } else {
-	$query = "SELECT I.item_id, I.description, I.image, I.category_id, C.name FROM items I, categories C WHERE C.category_id = I.category_id AND I.description LIKE '%$term%'";
+    $term = strtolower($term);
+    $rentalFlag = false;
+    $bidFlag = false;
+    $saleFlag = false;
+    if (!(strpos($term, '-rental') === false)) {
+        $rentalFlag = true;
+        $term = str_replace('-rental', '', $term);
+    }
+    if (!(strpos($term, '-sale') === false)) {
+        $saleFlag = true;
+        $term = str_replace('-sale', '', $term);
+    }
+    if (!(strpos($term, '-bid') === false)) {
+        $bidFlag = true;
+        $term = str_replace('-bid', '', $term);
+    }
+    $term = trim($term);
+
+	$query = "SELECT I.item_id, I.description, I.image, I.category_id, C.name FROM items I, categories C"
+        . (($rentalFlag) ? (', rentables R') : (''))
+        . (($bidFlag) ? (', auctioned_by A') : (''))
+        . (($saleFlag) ? (', sold_by S') : (''))
+
+        . " WHERE C.category_id = I.category_id AND I.description LIKE '%$term%'"
+        . (($rentalFlag) ? (' AND I.item_id=R.item_id AND R.on_shelf=1') : (''))
+        . (($bidFlag) ? (' AND I.item_id=A.item_id AND A.number_in_stock>0') : (''))
+        . (($saleFlag) ? (' AND I.item_id=S.item_id AND S.number_in_stock>0') : (''));
 
 	if($result = $databaseConnection->query( $query)) { // If query was successful
         if (isset($_SESSION['username'])) {
