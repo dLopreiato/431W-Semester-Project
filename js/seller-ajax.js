@@ -11,9 +11,7 @@ function displayInfo(){
 	if (urlUsername != ""){
 		sendData = {username: urlUsername};
 	}
-	
-	console.log(sendData);
-	
+		
     $.ajax({
         url: PROTOCOL + ROOT_DIRECTORY + '/api/GetSeller.php',
         dataType: 'json',

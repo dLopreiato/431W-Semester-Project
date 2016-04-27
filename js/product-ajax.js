@@ -231,15 +231,36 @@ function submitBid() {
     var credit_card = document.getElementById('bid-creditCard').value;
     var address_id = document.getElementById('bid-address').value;
     var amount = document.getElementById('bid-amount').value;
-    var item_id = $.urlParam('id');
-    $.ajax({
-        url: PROTOCOL + ROOT_DIRECTORY + '/api/EnterBid.php',
+    var item_id = $.urlParam('id');	
+	
+	$.ajax({
+        url: PROTOCOL + ROOT_DIRECTORY + '/api/GetHighestCurrentBid.php',
         dataType: 'json',
-        data: {'item_id': item_id, 'address_id': address_id, 'card_number': credit_card, 'amount': amount},
+        data: {item_id: item_id},
         method: 'GET',
-
         success: function(data) {
-            displayUserSuccess('Thank you for your bid!');
+			if (amount >= (data.amount + 2)){
+				 $.ajax({
+					url: PROTOCOL + ROOT_DIRECTORY + '/api/EnterBid.php',
+					dataType: 'json',
+					data: {'item_id': item_id, 'address_id': address_id, 'card_number': credit_card, 'amount': amount},
+					method: 'GET',
+
+					success: function(data) {
+						displayUserSuccess('Thank you for your bid!');
+					},
+					error: function(xhr, ajaxOptions, thrownError) {
+						var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
+						for (var key in serverErrorInfo) {
+							displayGeneralUserError(serverErrorInfo[key]['userErrorText']);
+							console.error('AJAX Error: ' + serverErrorInfo[key]['errorDescription'] + "\n" + thrownError);
+						}
+					}
+				});
+			}
+			else{
+				displayGeneralUserError("Sorry, your bid must be at least $2 greater than the highest current bid");
+			}
         },
         error: function(xhr, ajaxOptions, thrownError) {
             var serverErrorInfo = JSON.parse(unescape(xhr.responseText));
@@ -249,6 +270,7 @@ function submitBid() {
             }
         }
     });
+ 
 }
 
 
