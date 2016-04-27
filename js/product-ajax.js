@@ -239,7 +239,7 @@ function submitBid() {
         data: {item_id: item_id},
         method: 'GET',
         success: function(data) {
-			if (amount >= (data.amount + 2)){
+			if ((amount >= (data.amount + 2))  && (amount >= data.reserve_price)){
 				 $.ajax({
 					url: PROTOCOL + ROOT_DIRECTORY + '/api/EnterBid.php',
 					dataType: 'json',
@@ -259,7 +259,7 @@ function submitBid() {
 				});
 			}
 			else{
-				displayGeneralUserError("Sorry, your bid must be at least $2 greater than the highest current bid");
+				displayGeneralUserError("Sorry, your bid must be at least $2 greater than the highest current bid and the owner's reserve price");
 			}
         },
         error: function(xhr, ajaxOptions, thrownError) {
