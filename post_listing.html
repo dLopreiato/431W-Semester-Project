@@ -48,21 +48,24 @@
     </nav>
 
     <div class="container">
-        <h1>Item Description</h1>
-        <h3>Bid Items</h3>
+		<div id="error-view">
+		</div>
+		<div id="heading">
+		</div>
+		<h3>Post Item for Auction</h3>
         <div>
         	<div class="form-group">
         		<label for="reservePrice1">Reserve Price</label>
-				<input type="text" class="form-control" id="reservePrice1" placeholder="Reserve Price" name="reservePrice">
+				<input type="text" class="form-control" id="reservePrice1" placeholder="The item won't sell if the lowest bid is below this price" name="reservePrice">
         	</div>
         	<div class="form-group">
         		<label for="numInStock1">Number in Stock</label>
 				<input type="text" class="form-control" id="numInStock1" placeholder="Number in Stock" name="numInStock">
         	</div>
-        	<button type="submit" class="btn btn-primary" onclick="postListing();">Submit</button>
+        	<button type="submit" class="btn btn-primary" onclick="postItemAuction();">Submit</button>
         </div>
         <hr>
- 		<h3>Sale Items</h3>
+ 		<h3>Post Item for Sale</h3>
  		<div>
  			<div class="form-group">
         		<label for="listedPrice1">Listed Price</label>
@@ -72,11 +75,11 @@
         		<label for="numInStock3">Number in Stock</label>
 				<input type="text" class="form-control" id="numInStock3" placeholder="Number in Stock" name="numInStock2">
         	</div>
-        	<button type="submit" class="btn btn-primary" onclick="postListing();">Submit</button>
+        	<button type="submit" class="btn btn-primary" onclick="postItemSale();">Submit</button>
         </div>
         <hr>
         <!-- serial number, rental time (in days), and rental price-->
-        <h3>Rental Items</h3>
+        <h3>Post Item to Rent</h3>
         <div>
         	<div class="form-group">
         		<label for="serialNumber1">Serial Number</label>
@@ -90,7 +93,7 @@
         		<label for="rentalPrice1">Rental Price</label>
 				<input type="text" class="form-control" id="rentalPrice1" placeholder="Rental Price" name="rentalPrice">
         	</div>
-        	<button type="submit" class="btn btn-primary" onclick="postListing();">Submit</button>
+        	<button type="submit" class="btn btn-primary" onclick="postItemRent();">Submit</button>
         </div>
 
 
@@ -109,6 +112,7 @@
     <script src="js/config.js"></script>
     <script src="js/navbar-ajax.js"></script>
     <!-- PAGE SPECIFIC SCRIPTS GO HERE -->
+	<script src="js/post-listing-ajax.js"></script>
   </body>
 
 </html>

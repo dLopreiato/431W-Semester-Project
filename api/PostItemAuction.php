@@ -34,7 +34,8 @@ if($item_id === false ||  $reserve_price === false ||  $number_in_stock === fals
 } else {
 	// Check ownership
     $ownershipCheck = "SELECT seller FROM items WHERE item_id='$item_id' AND seller='$username'";
-    if ($databaseConnection->query($ownershipCheck)->num_rows == 0) {
+    $result = $databaseConnection->query($ownershipCheck);
+	if ($result->num_rows == 0) {
         SendSingleError(HTTP_UNAUTHORIZED, 'this item does not belong to this seller', ERRTXT_UNAUTHORIZED);
     }
 
