@@ -1,0 +1,658 @@
+Task ID,Created At,Completed At,Last Modified,Name,Assignee,Due Date,Tags,Notes,Projects,Parent Task
+116110922126357,2016-04-22,2016-04-22,2016-04-22,Gimme Tasks,Drew Lopreiato,,,,#90's Kids R Us,
+116104695227981,2016-04-22,2016-04-22,2016-04-22,me too pls -M,Drew Lopreiato,,,,,Gimme Tasks
+104256073984604,2016-03-23,2016-03-27,2016-03-27,CR GetAllBadges.php,Drew Lopreiato,2016-03-26,,https://github.com/dLopreiato/431W-Semester-Project/commit/6fd35a3344d770991ba4e04283997062c05dcf29,#90's Kids R Us,
+104256073984610,2016-03-23,2016-03-27,2016-03-27,CR GetCategories.php,Drew Lopreiato,2016-03-26,,https://github.com/dLopreiato/431W-Semester-Project/commit/a226a5b26627478f5cfadbd6fd745310c4d65b4a,#90's Kids R Us,
+104378215761180,2016-03-23,2016-03-27,2016-03-27,CR GetItems.php,Drew Lopreiato,2016-03-26,,"https://github.com/dLopreiato/431W-Semester-Project/commit/5fc891d40d5ff777956327e24ac8a6476ea9452c
+
+This one sucks I'm sorry.  I didn't even do anything when there's no rows.  Shh don't tell drew.  ",#90's Kids R Us,
+104729732994907,2016-03-24,2016-03-27,2016-03-27,CR GetCards.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/4bf02da8d853e158a7009c4d6a924f4f1564a1af,#90's Kids R Us,
+104729732994911,2016-03-24,2016-03-27,2016-03-27,CR AddCard.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/9a8ae262b83485699f19549a55dec37c34509d88,#90's Kids R Us,
+104729732994920,2016-03-24,2016-03-27,2016-03-27,CR DeleteCard.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/0d516d8306ff71111a524ad6560227e0a0d04db2,#90's Kids R Us,
+104907041271710,2016-03-24,2016-03-27,2016-03-27,CR GetSeller.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/b665f3ba8542c434e880f2523efd1d4f2338c816,#90's Kids R Us,
+104907041271716,2016-03-24,2016-03-27,2016-03-27,CR AddAddress.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/8fa11f1727cc2c89daa00659651648d48475d70e,#90's Kids R Us,
+104907041271722,2016-03-24,2016-03-27,2016-03-27,CR GetAddresses.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/5de54e5dd0e1db45e01b6fb972ff671ae9716935,#90's Kids R Us,
+104907041271728,2016-03-24,2016-03-27,2016-03-27,CR DeleteAddress.php,Drew Lopreiato,2016-03-27,,https://github.com/dLopreiato/431W-Semester-Project/commit/3faadc7874ffd00f3bd2dfc85203ab20acc32ef7,#90's Kids R Us,
+101379149691022,2016-03-15,,2016-04-11,Back End:,,,,,#90's Kids R Us,
+103712040738824,2016-03-22,2016-04-19,2016-04-19,Figure Out wtf to do with sale orders,Drew Lopreiato,2016-03-25,,,#90's Kids R Us,
+113553999280679,2016-04-17,2016-04-21,2016-04-21,Review Bids Table,Drew Lopreiato,2016-04-20,,"Bids should not have sent or received because when a bid is won it becomes a sale item. Want to make sure you agree and then if you do update the table. Also I guess make sure that it wont cause problems elsewhere.
+",#90's Kids R Us,
+104023994542485,2016-03-22,2016-04-17,2016-04-17,EnterBid.php,Charles Bevington,2016-04-14,,"The api call that allows a user to make a bid.
+
+This takes the active user's username, and all of the relevant information, and places an entry in bids.
+
+*NOTE: We still do not have a process for knowing when to close out bids.*
+
+Parameters: item_id, amount, address_id, card_number
+Return: True if successful, the Error otherwise
+",#90's Kids R Us,
+104023994542491,2016-03-22,2016-04-12,2016-04-12,MarkSent.php,Lauren Bosssauce,2016-04-14,,"This API call allows the seller of an item, mark a transaction as sent.
+
+The sale_id, bid_id, rental_id trying to be marked as sent, must have the seller be the active user. Why didn't I make this three different ones? Because that feels excessive to me.
+
+Optional Parameters: sale_id, rental_id
+Return: True on success, error otherwise
+
+This has to come from the seller. The person marking it as sent must own the item. Check this in the rentables and sold_by tables. (Just adding another table)",#90's Kids R Us,
+104023994542493,2016-03-22,2016-04-12,2016-04-12,MarkReceived.php,Lauren Bosssauce,,,"This API call allows the buyer of an item mark a transaction as received.
+
+The sale_id, rental_id trying to be marked as sent, must have the buyer be the active user. Why didn't I make this three different ones? Because that feels excessive to me.
+
+
+Optional Parameters: sale_id,  rental_id
+Return: True on success, error otherwise",#90's Kids R Us,
+104375820005500,2016-03-23,2016-04-12,2016-04-12,GetOutgoingTransactions.php,Lauren Bosssauce,,,"HALP PLEASE PLEASE HALP
+
+",#90's Kids R Us,
+106037099568737,2016-03-29,2016-04-13,2016-04-13,drew describe this,Drew Lopreiato,,,,,GetOutgoingTransactions.php
+104375820005502,2016-03-23,2016-04-12,2016-04-12,Find.php,Lauren Bosssauce,,,"The API call that is made when a user enters something in the search box.
+
+This should use the SQL ""like"" term and search the items table (all of the columns you think should be searched), and return the relevant information to display. (Please return the word of the category, not the id).
+
+Parameters: term
+Return: Array of item_id, description, image, and category",#90's Kids R Us,
+104749902648246,2016-03-24,2016-04-19,2016-04-19,CreateItem.php,Charles Bevington,,,"This API call will be used to post item listings on the store.
+
+Ensure the active user is a seller.
+
+NOTE: This is going to require the use of file uploads so that the image works. Never done it through API calls like this, so you'll probably have to make a temporary form for yourself to test this.
+
+Parameters: description, location, category_id, image
+Return: True on success, the error otherwise",#90's Kids R Us,
+112005832957410,2016-04-12,2016-04-15,2016-04-15,GetSellerItems.php,Mikayla Jones,2016-04-17,,This API call will return all of the items that this user sells,#90's Kids R Us,
+113008567377860,2016-04-14,2016-04-20,2016-04-20,Insert Blank entries for Create Item,Charles Bevington,,,"sold_by, auctioned_by, and the rentables",#90's Kids R Us,
+114636994378249,2016-04-19,,2016-04-19,Ensure every table has sample data in it,,,,,#90's Kids R Us,
+116028121762773,2016-04-22,2016-04-26,2016-04-26,Give all items images,,,,,#90's Kids R Us,
+116222366236234,2016-04-23,2016-04-24,2016-04-24,Actually update badges table somewhere,Drew Lopreiato,,,need design decision for this.  where/when do we do that?,#90's Kids R Us,
+112220250059633,2016-04-13,2016-04-13,2016-04-13,Expose Address through GetOutgoingTransactions.php,Mikayla Jones,2016-04-16,,,#90's Kids R Us,
+108683757842231,2016-04-05,2016-04-12,2016-04-12,Make Sale_id Auto Incrementing,Charles Bevington,2016-04-04,,,#90's Kids R Us,
+116113387946397,2016-04-22,2016-04-26,2016-04-26,sales reports api,Charles Bevington,,,"working on it
+",#90's Kids R Us,
+116892595663597,2016-04-26,,2016-04-26,Questionable stuff,,,,,#90's Kids R Us,
+116892595663600,2016-04-26,,2016-04-26,Company vs Seller,,,,"""The sources of the items
+may be a company (i.e., a supplier) or an individual (i.e., an online seller).""",,Questionable stuff
+116892595663606,2016-04-26,,2016-04-26,Depth of category tree varies but is no more than ten levels deep,,,,,,Questionable stuff
+116892595663608,2016-04-26,,2016-04-26,Suppliers,,,,"""3. Suppliers: All the suppliers of items sold at HelloWorld are maintained in the
+database. Supplier information includes company name, address, point of contact
+(person), phone number, company category, revenue, etc.""
+
+I assume this is sellers, but do we track all these things?",,Questionable stuff
+116892595663626,2016-04-26,2016-04-26,2016-04-26,Bidding - reserve price enforced?,,,,"""The online
+seller may specify a reserve price (which is hidden from the buyers) for an item he posted
+for auction. A reserve price is the minimum price a seller is willing to accept for the item.
+At the end of the auction, if no bid is higher than the reserve price, the item will not be
+sold.""",#90's Kids R Us,
+116892595663629,2016-04-26,2016-04-26,2016-04-26,How does a user register as a seller?,,,,,#90's Kids R Us,
+116892595663632,2016-04-26,2016-04-26,2016-04-26,Bidding - + 2 dollars?,Mikayla Jones,,,"Each bid that is placed must be at least $2 higher than all previous bids
+
+""A bid is rejected and the bidder
+is notified if the amount does not exceed the previous high bid by at least $2, or if the bid
+does not exceed the reserve amount for the item.""
+",#90's Kids R Us,
+116892595663634,2016-04-26,2016-04-26,2016-04-26,Bidding - check that bidder isn't the seller,Drew Lopreiato,,,"cause dat shady
+
+
+"" A user can place one or more bids on an item as long as they are not the
+seller of the item.""",#90's Kids R Us,
+116892595663636,2016-04-26,,2016-04-26,Bidding - when does the auction end + notify people,,,,"""Each bid that is placed must be at least $2 higher than all previous bids
+and must be placed before the auction ends. At the end of the auction the seller and all
+bidders are notified of the highest bid and the user that placed it. Contact information is
+sent to the seller and the highest bidder so that they can complete the transaction. An
+auction starts when the seller registers the item for auction and ends exactly at the time
+the seller specified. Information about an auction in which the item is not sold can be
+discarded immediately.""",#90's Kids R Us,
+117279502445966,2016-04-26,2016-04-26,2016-04-26,delete achievement progress of fbi_superstar,Drew Lopreiato,,,,#90's Kids R Us,
+116892595663640,2016-04-26,2016-04-26,2016-04-26,Searching - based on at least one other category,Drew Lopreiato,,,"""SearchingItems: Users are able to search the items by entering some keywords or
+conditions (e.g., price range). As a search result, a list of items that satisfy the search
+criteria is returned to the user.""",#90's Kids R Us,
+101379149691020,2016-03-15,,2016-04-11,Front End:,,,,,#90's Kids R Us,
+110519125106316,2016-04-08,2016-04-21,2016-04-21,product.html,Queen Nikki,2016-04-22,,"CreateReview
+EnterBid
+Purchase
+Rent
+GetCategoryBackTree
+GetProductInfo
+GetReviews
+GetStats",#90's Kids R Us,
+112005832957405,2016-04-12,2016-04-17,2016-04-17,seller.html,Queen Nikki,2016-04-17,,"Display seller name, point of contact, address, and phone number.
+
+Maybe use a jumbotron? http://getbootstrap.com/components/#jumbotron",#90's Kids R Us,
+112005832957389,2016-04-12,2016-04-20,2016-04-20,search_results.html,Amanda Jensen,2016-04-17,,"Similar in structure to the amazon search page
+
+Display like 2 sample items. Should display item name, an image, and the category it belongs to
+
+Consider using just grid and media objects
+http://getbootstrap.com/css/#grid
+http://getbootstrap.com/components/#media",#90's Kids R Us,
+112005832957407,2016-04-12,2016-04-21,2016-04-21,account.html,Drew Lopreiato,2016-04-17,,"This will just contain links to all the pages we want to expose to the user. Come back to this when we know all the pages
+",#90's Kids R Us,
+112005832957414,2016-04-12,2016-04-17,2016-04-17,create_item.html,Queen Nikki,2016-04-17,,"This provides the form for a user to create an item to sell.
+
+Needs to have form elements that include the description, the location, a dropdown for category, and a file upload button
+
+Helpful Resources:
+http://getbootstrap.com/components/#input-groups
+http://getbootstrap.com/css/#forms",#90's Kids R Us,
+112005832957418,2016-04-12,2016-04-17,2016-04-17,post_listing.html,Lauren Bosssauce,2016-04-17,,"Contains 3 forms, (separate them by a horizontal rule).
+
+The top of the page should have an h1 that is the item description.
+The first form should have space for reserve price and number in stock and submit button
+The second form should have space for listed price and number in stock and submit
+The third form should have space for serial number, rental time (in days), and rental price
+
+Resources:
+http://getbootstrap.com/css/#forms
+http://getbootstrap.com/css/#buttons
+http://getbootstrap.com/css/#type
+http://getbootstrap.com/css/#grid",#90's Kids R Us,
+112005832957422,2016-04-12,2016-04-13,2016-04-13,outgoing_transactions.html,Mikayla Jones,2016-04-17,,"Should be 2 tables, one labeled sales one labeled rentals.
+
+The Sales table should display the item description, the amount purchased, the sending address, a button to mark as sent, and a check/x to display received status.
+
+The Rentals table should display the item description, the item serial number, the sending address, a button to mark as sent, and a check/x to display received status.",#90's Kids R Us,
+112005832957424,2016-04-12,2016-04-17,2016-04-17,browse.html,Lauren Bosssauce,2016-04-17,,"This should be a 3 chunk wide grid, with a sample picture and the product description, 
+http://getbootstrap.com/css/#grid
+
+This is a really good example:
+http://getbootstrap.com/components/#thumbnails-custom-content
+
+Start off with blank.html, and build up from there
+",#90's Kids R Us,
+112005832957391,2016-04-12,2016-04-19,2016-04-19,register-ajax.js,Charles Bevington,2016-04-17,,"Hook in register page functionality to RegisterUser.php
+
+On success, direct user to login page.",#90's Kids R Us,
+114636994378252,2016-04-19,2016-04-20,2016-04-20,create-item-ajax.js,Mikayla Jones,2016-04-22,,change the file upload to link,#90's Kids R Us,
+114636994378256,2016-04-19,2016-04-21,2016-04-21,browse-ajax.js,Mikayla Jones,2016-04-22,,"copy search like a boss
+",#90's Kids R Us,
+115215459480445,2016-04-20,2016-04-20,2016-04-20,search-results-ajax.js,Mikayla Jones,,,,#90's Kids R Us,
+115215459480448,2016-04-20,2016-04-20,2016-04-20,Connect search bar to search_resusults.html,Drew Lopreiato,,,,#90's Kids R Us,
+104342216097244,2016-04-22,2016-04-23,2016-04-23,profile-ajax.js,Mikayla Jones,,,,#90's Kids R Us,
+115215459480451,2016-04-20,2016-04-22,2016-04-22,product-ajax.js,Drew Lopreiato,,,"just the bidding modal and the rental modal now
+",#90's Kids R Us,
+115532049711970,2016-04-21,2016-04-23,2016-04-23,Fill homepage with content,Mikayla Jones,,,,#90's Kids R Us,
+115532049711982,2016-04-21,2016-04-22,2016-04-22,select_items.html,,,,,#90's Kids R Us,
+115532049711984,2016-04-21,2016-04-23,2016-04-23,select-items-ajax.js,Mikayla Jones,,,,#90's Kids R Us,
+115532049711989,2016-04-21,2016-04-26,2016-04-26,post-listing-ajax.js,Mikayla Jones,,,edit html for bid item ,#90's Kids R Us,
+115803650000248,2016-04-21,2016-04-23,2016-04-23,Make default image in case there isn't one,Mikayla Jones,,,(but also it would be nice if all our samples had actual images),#90's Kids R Us,
+115803650000250,2016-04-21,2016-04-26,2016-04-26,Make rows even height,Amanda Jensen,,,"(If we have time - just an aesthetic thing - but would make a big difference in looks)
+browse.html and search_results.html",#90's Kids R Us,
+116892595663590,2016-04-26,2016-04-26,2016-04-26,sales report ajax,Mikayla Jones,,,,#90's Kids R Us,
+116892595663593,2016-04-26,2016-04-26,2016-04-26,sales report html,Mikayla Jones,,,,#90's Kids R Us,
+116892595663620,2016-04-26,2016-04-26,2016-04-26,Make sure you have to be logged in,,,,make sure an error is thrown and you can't do anything you're not supposed to do if you aren't logged in,#90's Kids R Us,
+116892595663622,2016-04-26,,2016-04-26,Look for other obvious buggies,,,,just play around and see if you can break it,#90's Kids R Us,
+117284637297553,2016-04-26,2016-04-26,2016-04-26,seller-ajax.js,Mikayla Jones,,,,#90's Kids R Us,
+116028121762776,2016-04-22,2016-04-22,2016-04-22,index.html,Mikayla Jones,,,,#90's Kids R Us,
+115532049711976,2016-04-21,2016-04-21,2016-04-21,Add Gender Back in,,,,,#90's Kids R Us,
+112005832957397,2016-04-12,2016-04-14,2016-04-14,purchase-history-ajax.js,Mikayla Jones,2016-04-17,,"Hook in purchase history functionality to purchase_history.html
+
+Will need to pull information from GetTransactions, attach button functionality to MarkReceived, and link each object to ""product.html?id=x"" where x is that item_id
+",#90's Kids R Us,
+112508195172158,2016-04-13,2016-04-15,2016-04-15,outgoing-transaction-ajax.js,Mikayla Jones,2016-04-17,,"GetOutgoingTransactions, MarkSent, ReturnRental (it's like ""MarkReturned"" only i'm bad a consistency, so it's not actually named that)",#90's Kids R Us,
+102798568937332,2016-03-18,,2016-04-11,Code Reviews:,,,,"
+",#90's Kids R Us,
+116215460525465,2016-04-23,2016-04-24,2016-04-24,CR select-items-ajax.js,Drew Lopreiato,2016-04-26,,"https://github.com/dLopreiato/431W-Semester-Project/commit/16d98475cdfc9ee0b4f8431a81df8f5283ddea55
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/b1c524fe27dd23b157ad7d3e21cbaff7b08e8857
+
+
+",#90's Kids R Us,
+116215460525471,2016-04-23,2016-04-24,2016-04-24,CR filling the homepage with three random items,Drew Lopreiato,2016-04-26,,https://github.com/dLopreiato/431W-Semester-Project/commit/47644f2df7846f18aa76ef17d79c8f0ea0ede104,#90's Kids R Us,
+116222366236225,2016-04-23,2016-04-24,2016-04-24,CR profile-ajax.js,Drew Lopreiato,2016-04-26,,https://github.com/dLopreiato/431W-Semester-Project/commit/62241258a1832af9dd375bb3bbc509c3324f1ee2,#90's Kids R Us,
+116222366236237,2016-04-23,2016-04-24,2016-04-24,CR Stuff,Drew Lopreiato,2016-04-26,,"https://github.com/dLopreiato/431W-Semester-Project/commit/0cbffced5fc2a40a980b2e3cb2194ed4d0581bf1
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/afa62732d2ae7e2bae4b423a8f859d715aa096ce
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/bffa16d6178cb95c38820840682925bbf3005d78
+
+",#90's Kids R Us,
+115178185350355,2016-04-20,2016-04-21,2016-04-21,CR Insert Blank entries for Create Item,Drew Lopreiato,2016-04-21,,,#90's Kids R Us,
+114676503308194,2016-04-19,2016-04-20,2016-04-20,CR CreateItem.php,Drew Lopreiato,2016-04-21,,,#90's Kids R Us,
+113553999280689,2016-04-17,2016-04-21,2016-04-21,CR EnterBid.php,Drew Lopreiato,2016-04-20,,,#90's Kids R Us,
+114393522132557,2016-04-19,2016-04-21,2016-04-21,CR register-ajax.js,Drew Lopreiato,2016-04-21,,,#90's Kids R Us,
+105004036523039,2016-03-25,2016-04-21,2016-04-21,CR GetReviewStats.php,Drew Lopreiato,2016-03-28,,https://github.com/dLopreiato/431W-Semester-Project/commit/4cd1f8d69eeae9046e01e9042d20bdac65d21c9b,#90's Kids R Us,
+102798568937335,2016-03-18,2016-03-20,2016-03-20,CR Registration API ,Drew Lopreiato,2016-03-21,,https://github.com/dLopreiato/431W-Semester-Project/commit/24561dfa82c861da146403f562a46b9a2f32ff83,#90's Kids R Us,
+102798568937341,2016-03-18,2016-03-20,2016-03-20,CR Get User Info API,Drew Lopreiato,2016-03-21,,https://github.com/dLopreiato/431W-Semester-Project/commit/0789aefd46eb56edefd8b2dd55f01b2441fbf225,#90's Kids R Us,
+102912093883895,2016-03-20,2016-03-20,2016-03-20,CR Get Active User Info API,Drew Lopreiato,2016-03-23,,https://github.com/dLopreiato/431W-Semester-Project/commit/d0ebef4f83c1da9bbd2e8f27a35ebc68bde20895,#90's Kids R Us,
+105117580910672,2016-03-26,2016-04-21,2016-04-21,CR PostItemSale.php,Drew Lopreiato,2016-04-21,,https://github.com/dLopreiato/431W-Semester-Project/commit/0e06616cee9206c301531a721216c0755195dc63,#90's Kids R Us,
+111749606267108,2016-04-12,2016-04-17,2016-04-17,Send an unauthorized error when the user is not logged in,Charles Bevington,2016-04-14,,,,CR PostItemSale.php
+112005832957430,2016-04-12,,2016-04-12,add a listing to ,,,,,,CR PostItemSale.php
+108684657959878,2016-04-05,2016-04-21,2016-04-21,CR PostItemAuction.php,Drew Lopreiato,2016-04-08,,,#90's Kids R Us,
+108684657959874,2016-04-05,2016-04-21,2016-04-21,CR PostItemSale.php,Drew Lopreiato,2016-04-08,,,#90's Kids R Us,
+112998983028479,2016-04-14,2016-04-18,2016-04-18,CR purchase-history-ajax.js,Drew Lopreiato,2016-04-17,,https://github.com/dLopreiato/431W-Semester-Project/commit/2c0cb636511f8db21e769ea9da2e5fec9000b21c,#90's Kids R Us,
+113298843301820,2016-04-15,2016-04-20,2016-04-20,CR GetSellerItems.php,Drew Lopreiato,2016-04-18,,https://github.com/dLopreiato/431W-Semester-Project/commit/81f92e6c45563c6a832993f2e80ffa941636880a,#90's Kids R Us,
+114994432867730,2016-04-20,2016-04-21,2016-04-21,CR create-item-ajax.js and its friends,Drew Lopreiato,2016-04-23,,"https://github.com/dLopreiato/431W-Semester-Project/commit/79b226bea4d59db04629bf8089c6c9ce1cd96d86
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/25242642cddf663375cf7dcdeebd48b33a39487b
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/a8c4ad375c80dc9541da1a9a2a67cf03724557a0
+
+^^shhhh duplicated code is fineee.....
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/d5ff0d83d02e00f325bbf28035decec76b76b584
+
+
+",#90's Kids R Us,
+115225546689828,2016-04-20,2016-04-22,2016-04-22,CR search-results-ajax.js and friend,Drew Lopreiato,2016-04-24,,"https://github.com/dLopreiato/431W-Semester-Project/commit/cd08c96cfeddb58658b1d37be17f7e988aa86a97
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/270206e4bb81542c18d37101c5f5de0e74fa92dc
+
+",#90's Kids R Us,
+115803650000252,2016-04-21,2016-04-22,2016-04-22,CR browse-ajax.js and friend,Drew Lopreiato,2016-04-25,,"https://github.com/dLopreiato/431W-Semester-Project/commit/2b9e205acfe570c6806f61b9056fd632f8976ef0
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/111602b6a4d6dbaffb513d12d043f073ab031344",#90's Kids R Us,
+113298843301825,2016-04-15,2016-04-18,2016-04-18,CR outgoing-transaction-ajax.js,Drew Lopreiato,2016-04-18,,"https://github.com/dLopreiato/431W-Semester-Project/commit/937c791f6d36a679984c2ced62d15ea4aa798e4c
+
+Also this because I'm silly
+https://github.com/dLopreiato/431W-Semester-Project/commit/df68c73d0c710b7031c6b983116c6e3f91fa9c96
+
+",#90's Kids R Us,
+106138176659809,2016-03-29,2016-04-13,2016-04-13,CR Rent.php,Drew Lopreiato,2016-04-01,,https://github.com/dLopreiato/431W-Semester-Project/commit/591d2fab53bb79efe77e9756737e1c0626ea6d79,#90's Kids R Us,
+107639164273310,2016-04-04,2016-04-12,2016-04-12,CR GetUserBadges.php,Drew Lopreiato,2016-04-07,,https://github.com/dLopreiato/431W-Semester-Project/commit/5b3c8180dc5a112b1a1d36e7ccd037fe308f9999,#90's Kids R Us,
+107639164273315,2016-04-04,2016-04-13,2016-04-13,CR GetCategoryBackTree.php,Drew Lopreiato,2016-04-07,,https://github.com/dLopreiato/431W-Semester-Project/commit/1c4e308582f9682caacab649ae65fef00c69450b,#90's Kids R Us,
+108527606912390,2016-04-05,2016-04-13,2016-04-13,CR changes to Rent.php,Drew Lopreiato,2016-04-08,,https://github.com/dLopreiato/431W-Semester-Project/commit/9840ebd21efdb996e893bd77712725e3d7c0dd66,#90's Kids R Us,
+108527606912396,2016-04-05,2016-04-14,2016-04-14,CR ReturnRental.php,Drew Lopreiato,2016-04-16,,"https://github.com/dLopreiato/431W-Semester-Project/commit/b6022499be902422550df547388f7d8f2d0118b8
+
+you said it didn't have to be pretty drew.
+
+Revised:
+https://github.com/dLopreiato/431W-Semester-Project/commit/dd28208f48bf6e4381144f7b291f31a9e404f732
+
+",#90's Kids R Us,
+112508195172172,2016-04-13,2016-04-13,2016-04-13,Refactor: Take 1 Parameter (rental_id) and work based on that,Mikayla Jones,2016-04-16,,https://github.com/dLopreiato/431W-Semester-Project/commit/dd28208f48bf6e4381144f7b291f31a9e404f732,,CR ReturnRental.php
+108527606912405,2016-04-05,2016-04-14,2016-04-14,CR GetTransactions.php,Drew Lopreiato,2016-04-16,,"https://github.com/dLopreiato/431W-Semester-Project/commit/ed835941b43dc3b2734f57708f10852bccdb8860
+
+Edit based on feedback:
+
+https://github.com/dLopreiato/431W-Semester-Project/commit/24a0d7c6e00c458477a91c497a6e5a38562ba065
+",#90's Kids R Us,
+108684656227155,2016-04-05,2016-04-13,2016-04-13,CR Purchase.php,Drew Lopreiato,,,"https://github.com/dLopreiato/431W-Semester-Project/commit/84e9828c3ab198729354dc1a239b64a7aba47d23
+",#90's Kids R Us,
+112313111228887,2016-04-13,2016-04-14,2016-04-14,CR outgoing_transactions.html,Drew Lopreiato,2016-04-16,,"https://github.com/dLopreiato/431W-Semester-Project/commit/41497929187865085b96a704139ce4db91e8b5dd
+
+Revised:
+https://github.com/dLopreiato/431W-Semester-Project/commit/ff6ca208a20b61c258229589af60a7c65f63a0f5
+",#90's Kids R Us,
+112508195172164,2016-04-13,2016-04-13,2016-04-13,"Add a ""marked returned"" button to the rentals portion",Mikayla Jones,2016-04-16,,,,CR outgoing_transactions.html
+112581382222569,2016-04-13,2016-04-14,2016-04-14,CR exposing addresses (scandalous),Drew Lopreiato,2016-04-17,,https://github.com/dLopreiato/431W-Semester-Project/commit/cba01506c4e8d9867a6bf602e5fb532c63bd1554,#90's Kids R Us,
+112005832957426,2016-04-12,,2016-04-12,Report:,,,,,#90's Kids R Us,
+112005832957428,2016-04-12,,2016-04-28,Reflect all final database changes,Drew Lopreiato,,,,#90's Kids R Us,
+116892595663643,2016-04-26,2016-04-29,2016-04-29,ER Diagrams,,,,,,Reflect all final database changes
+116892595663645,2016-04-26,2016-04-29,2016-04-29,Relationship diagrams,,,,,,Reflect all final database changes
+116892595663647,2016-04-26,2016-04-29,2016-04-29,SQL Statements,,,,,,Reflect all final database changes
+116892595663649,2016-04-26,2016-04-29,2016-04-29,Text of each section,,,,,,Reflect all final database changes
+116892595663651,2016-04-26,,2016-04-26,Final humungo one,,,,,,Reflect all final database changes
+116222366236243,2016-04-24,2016-04-29,2016-04-29,Write all the other parts,,,,"During this phase of the project you will implement the database system you have
+previously designed for HelloWorld. You will also implement several transactions for the
+internal and/or external user operations of HelloWorld. Finally, you will wrap up this
+project by presenting your final system framework and discussing what expectations have
+been met.",#90's Kids R Us,
+116892595663588,2016-04-26,2016-04-29,2016-04-29,Min pages: 35,,,,"doesn't count title, table of contents, etc.
+
+sooo currently at 27",#90's Kids R Us,
+116892595663616,2016-04-26,2016-04-29,2016-04-29,System Framework,Charles Bevington,,,"Task 2: Complete System Framework
+Include an illustration of the final system framework of your project, describing how the
+frontend communicate with the backend, what tools are used for each components… etc.
+There is no strict rule on how you should present your framework. Use your creativity to
+put all you have done into one big figure!",#90's Kids R Us,
+116892595663618,2016-04-26,2016-04-29,2016-04-29,Reflection,Queen Nikki,,,"Task 3: Reflection
+Since this is the final phase for the project, it is time to reflect back on whether you have
+hit the goals you set for your team at the beginning of the semester. Make a comparison
+between what were proposed, and what have been achieved. Discuss why some tasks
+were not done if any, and why you added some tasks if any.",#90's Kids R Us,
+116892595663653,2016-04-26,2016-04-29,2016-04-29,Respond to TA's comments from last time,,,,"Strength:
+1. The technology survey is complete, including front end and back end technical details this project needs.
+2. The issues mentioned in Phase 1 are well solved.
+Areas of Improvement
+1. The function dependencies need more examination. For example, in Figure 4b, the zip code can decide the city and state. It also incurs the following problem - whether the database design satisfies the third normal form.
+2. It is not clear whether the design satisfies the third normal form, since it is not included in the report. If all relations are examined and they all satisfy the third normal form, it is necessary to state so in your report.
+",#90's Kids R Us,
+116892595663624,2016-04-26,,2016-04-26,Proofread all the things,,,,,#90's Kids R Us,
+118426273971453,2016-04-28,,2016-04-28,Export Asana to Github,,,,,#90's Kids R Us,
+118580822852932,2016-04-28,2016-04-29,2016-04-29,Rewrite rental section,Drew Lopreiato,,,,#90's Kids R Us,
+118580822852935,2016-04-28,,2016-04-28,Fix page numbers,,,,,#90's Kids R Us,
+118580822852939,2016-04-28,2016-04-29,2016-04-29,Say that everything is in third normal form somewhere,,,,THIS IS VERY IMPORTANT,#90's Kids R Us,
+116892595663655,2016-04-26,2016-04-28,2016-04-28,Make sure everything is prepped for demo,,,,"Like having a sample user that has lots of stuff in each category associated with their account (things not sent, things not recieved, etc.  U kno, a nice mix
+
+Also who's doing what",#90's Kids R Us,
+110743479147913,2016-04-11,2016-04-12,2016-04-12,CR card-management.ajax.js,Drew Lopreiato,2016-04-14,,"https://github.com/dLopreiato/431W-Semester-Project/commit/84316b3cead30ffcb25b8d1df3802298a7b774f1
+Changes:
+https://github.com/dLopreiato/431W-Semester-Project/commit/b41a7d9aae5b23a76c5376a018ee8a63b1366584
+",#90's Kids R Us,
+110743479147926,2016-04-11,2016-04-12,2016-04-12,CR address-management-ajax.js,Drew Lopreiato,2016-04-14,,https://github.com/dLopreiato/431W-Semester-Project/commit/5524f92e408861c56feac2c0c17e201a0ecb37f0,#90's Kids R Us,
+110636851332744,2016-04-09,2016-04-10,2016-04-10,CR (and design review?) profile.html,Drew Lopreiato,2016-04-12,,https://github.com/dLopreiato/431W-Semester-Project/commit/7bcf2b9d9644bc25fb306a8b755c506bb4fd8a93,#90's Kids R Us,
+110636851332751,2016-04-09,2016-04-10,2016-04-10,CR logout.html,Drew Lopreiato,2016-04-12,,https://github.com/dLopreiato/431W-Semester-Project/commit/fd794af57b68a6515c4258d2bd387023b90679c5,#90's Kids R Us,
+110636851332757,2016-04-09,2016-04-10,2016-04-10,CR register.html,Drew Lopreiato,2016-04-12,,https://github.com/dLopreiato/431W-Semester-Project/commit/2325b7fadd968e697deab7893a4eca3eaab2e53d,#90's Kids R Us,
+110636851332765,2016-04-09,2016-04-10,2016-04-10,CR purchase_history.html,Drew Lopreiato,2016-04-12,,https://github.com/dLopreiato/431W-Semester-Project/commit/f3c42c695eed2010e813500c7870670fd38c6fd9,#90's Kids R Us,
+110636851332773,2016-04-09,2016-04-10,2016-04-10,CR card_management.html,Drew Lopreiato,2016-04-12,,https://github.com/dLopreiato/431W-Semester-Project/commit/f8db9c8851393aa8adabcf6057570d0f60234acf,#90's Kids R Us,
+110636851332779,2016-04-09,2016-04-10,2016-04-10,CR address_management.html,Drew Lopreiato,2016-04-12,,https://github.com/dLopreiato/431W-Semester-Project/commit/20f39a8d9ab6914027a8dbaeca173668bf288fa6,#90's Kids R Us,
+110706934990780,2016-04-10,2016-04-10,2016-04-10,CR logout-ajax.js,Drew Lopreiato,2016-04-13,,https://github.com/dLopreiato/431W-Semester-Project/commit/c4b89b89463444dbf3292453c475cf65ba1b7ada,#90's Kids R Us,
+101379149691024,2016-03-15,2016-03-16,2016-03-16,Create Schema from Queries on Project Document,Mikayla Jones,2016-03-18,,,#90's Kids R Us,
+101379149691026,2016-03-15,2016-03-29,2016-03-29,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),,2016-03-18,,,#90's Kids R Us,
+101421642285641,2016-03-15,,2016-03-15,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+101421642285645,2016-03-15,,2016-03-15,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+101421642285649,2016-03-15,,2016-03-15,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+101421642285653,2016-03-15,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+103891169171744,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028916115761,2016-03-22,2016-03-22,2016-03-22,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),Mikayla Jones,2016-03-18,,,#90's Kids R Us,
+104028916115764,2016-03-22,,2016-03-22,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028916115766,2016-03-22,,2016-03-22,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028916115768,2016-03-22,,2016-03-22,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028916115770,2016-03-22,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028916115772,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028920391215,2016-03-22,2016-03-22,2016-03-22,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),Charles Bevington,2016-03-18,,,#90's Kids R Us,
+104028921195110,2016-03-22,,2016-03-22,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028921200305,2016-03-22,,2016-03-22,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028921399991,2016-03-22,,2016-03-22,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028921664193,2016-03-22,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028922400542,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028922538799,2016-03-22,2016-03-23,2016-03-23,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),Lauren Bosssauce,2016-03-18,,,#90's Kids R Us,
+104028923029946,2016-03-22,,2016-03-22,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028923038428,2016-03-22,,2016-03-22,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028923374377,2016-03-22,,2016-03-22,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028923604044,2016-03-22,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028923942102,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028916115774,2016-03-22,2016-03-24,2016-03-24,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),Drew Lopreiato,2016-03-18,,,#90's Kids R Us,
+104028919663597,2016-03-22,,2016-03-22,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028919995450,2016-03-22,,2016-03-22,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028920010880,2016-03-22,,2016-03-22,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028920175887,2016-03-22,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028920251878,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028924437877,2016-03-22,2016-03-22,2016-03-22,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),Queen Nikki,2016-03-18,,,#90's Kids R Us,
+104028925268541,2016-03-22,,2016-03-22,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028925402692,2016-03-22,,2016-03-22,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028925609550,2016-03-22,,2016-03-22,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028925964964,2016-03-22,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028926306099,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028926576575,2016-03-22,2016-04-04,2016-04-04,Fill Tables with Fake Data (ASSIGNED TO EVERYONE),Amanda Jensen,2016-03-18,,,#90's Kids R Us,
+104028927360298,2016-03-22,,2016-03-22,"""1. Fifteen users. At least five of the users have commented on another. The comments are associated with some auction items.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028927498545,2016-03-22,,2016-03-22,"2. 50 items to be auctioned. These items should cover different statuses, e.g. auction complete, still bidding… etc.",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028927704561,2016-03-22,,2016-03-22,3. 50 direct sale items to be sold directly from the stock.,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028928649747,2016-03-22,,2016-03-22,"4. 20 categories that form a browsing (category) tree, at least 3 levels deep. Do not count the root as one of the categories or as one of the three levels.""b",,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+104028929120935,2016-03-22,,2016-03-22,,,,,,,Fill Tables with Fake Data (ASSIGNED TO EVERYONE)
+106036616662875,2016-03-29,2016-04-10,2016-04-10,login.html,Queen Nikki,2016-04-11,,"start with blank.html, and put in a centered box a box for username, a box for password, and a submit button. nothing should happen when the button is clicked, this is purely for structure
+
+Consider using this: http://getbootstrap.com/css/#forms-horizontal
+and maybe this for the centering? http://getbootstrap.com/css/#grid
+
+don't worry about the colors just get hte structure down
+",#90's Kids R Us,
+110494780420601,2016-04-08,2016-04-09,2016-04-09,puchase_history.html,Mikayla Jones,,,"should display the name of the item bought (linking to it's page (just make the page link go to ""#"" for now)), amount bought, time it was bought, last four digits of card number used, and a check or x depending on if it was sent, and a button to mark recieved
+
+Probably want a table for this: http://getbootstrap.com/css/#tables
+Check out icons: http://getbootstrap.com/components/#glyphicons
+Buttons: http://getbootstrap.com/css/#buttons",#90's Kids R Us,
+110494780420603,2016-04-08,2016-04-09,2016-04-09,card_management.html,Mikayla Jones,,,"Should have a form at the top to allow the user to add a card
+then below that should have all the cards they own listed, with a delete button next to it
+
+- copy and paste the contents of blank.html into card_managament.html
+- consider using the grid http://getbootstrap.com/css/#grid
+- consider using this for forms http://getbootstrap.com/css/#forms
+- this for buttons http://getbootstrap.com/css/#buttons
+- probably a horizontal rule between the form and the listings
+- maybe a table for the listings http://getbootstrap.com/css/#tables
+- the button code http://getbootstrap.com/css/#buttons
+- the icon code (use the glyphicon glyphicon-trash icon) http://getbootstrap.com/components/#glyphicons-how-to-use
+
+again, just fill with sample data
+if you click a button, nothing should be working
+eventually we go back, delete the sample data, and create code that dynamically pulls it from the api
+",#90's Kids R Us,
+110494780420605,2016-04-08,2016-04-09,2016-04-09,address_management.html,Mikayla Jones,,,"The following is copy and pasted from card_management, but it's almost exactly the same thing except it's for addresses
+
+Should have a form at the top to allow the user to add a card
+then below that should have all the cards they own listed, with a delete button next to it
+
+- copy and past the contents of blank.html into card_managament.html
+- consider using the grid http://getbootstrap.com/css/#grid
+- consider using this for forms http://getbootstrap.com/css/#forms
+- this for buttons http://getbootstrap.com/css/#buttons
+- probably a horizontal rule between the form and the listings
+- maybe a table for the listings http://getbootstrap.com/css/#tables
+- the button code http://getbootstrap.com/css/#buttons
+- the icon code (use the glyphicon glyphicon-trash icon) http://getbootstrap.com/components/#glyphicons-how-to-use
+
+again, just fill with sample data
+if you click a button, nothing should be working
+eventually we go back, delete the sample data, and create code that dynamically pulls it from the api
+",#90's Kids R Us,
+110494780420607,2016-04-08,2016-04-09,2016-04-09,profile.html,Mikayla Jones,,,"This is the inspiration: http://steamcommunity.com/id/DeadflyProductions/stats/261570/achievements/
+
+Should show user name at top
+Put in like 2 example achievements, complete with fake icon (200px x 200px), title, description, progress (ex: 3/4), and date earned
+
+- Start with blank.html, copy and paste everything in it into profile.html
+- remove ""<h1>place content here</h1>"" and this is where you will be placing your stuff
+- Become familiar with the grid http://getbootstrap.com/css/#grid each badge might want to be a row? I don't know
+- I would suggest starting out with http://getbootstrap.com/components/#media this
+- Icons are in img/badges/
+- Other example data are in badges table
+- don't worry about colors so much as structure
+
+You are filling this page with example data, but eventually we will remove the example data, and populate it dynamically from the api calls
+",#90's Kids R Us,
+110519125106309,2016-04-08,2016-04-09,2016-04-09,logout.html,Mikayla Jones,,,"copy and paste form blank.html
+put in a jumbotron that says something like ""goodbye"" http://getbootstrap.com/components/#jumbotron
+done.
+
+yes that's it",#90's Kids R Us,
+110519125106311,2016-04-08,2016-04-09,2016-04-09,register.html,Mikayla Jones,,,"should show fields for all the registration information
+-----
+username
+password
+confirm password
+email
+name
+phone number
+age
+gender
+annual income (like srsly, wtf)
+---
+then a submit button taht says ""Register!""
+
+http://getbootstrap.com/css/#grid
+http://getbootstrap.com/css/#forms
+http://getbootstrap.com/css/#buttons",#90's Kids R Us,
+110743479147923,2016-04-11,2016-04-11,2016-04-11,address-management-ajax.js,Mikayla Jones,,,same as card-management-ajax,#90's Kids R Us,
+110706902407446,2016-04-10,2016-04-10,2016-04-10,logout-ajax.js,Mikayla Jones,,,"Include it in logout.html
+
+call the logout function on page load",#90's Kids R Us,
+110706902407449,2016-04-10,2016-04-11,2016-04-11,card-management-ajax.js,Mikayla Jones,,,"
+",#90's Kids R Us,
+110706902407451,2016-04-10,2016-04-11,2016-04-11,Populate Existing Cards,,,,"This will come from api/GetCards.php
+
+Use navbar-ajax.js as an example for what to do once you have the data.
+Begin by checking out the data in console.log(data);
+You can append html to the inside of an element using the "".append();"" function
+You will want to append each row 1 at a time to the table, so at first comment out the sample data in the card_management.html
+Next, you will need to find a way to identify where you're appending this information: add the following inside the table 'id=""existing-cards""' or something similar.
+Now that you have it id'd you can refer to it in javascript with ""$('#existing-cards tbody').append('<tr></tr>');""
+This will append the string ""<tr></tr>"" to the inside of something that is a tbody, which is inside something with the id of ""existing-cards"" (the # specifies that it's referring to an id).
+Pulling the information given from the ""GetCards.php"" call, insert the information into the page.
+Delete the sample data you had commented, once you're sure it's working.
+",,card-management-ajax.js
+110706902407453,2016-04-10,2016-04-11,2016-04-11,"Add ""Remove Card"" Functionality",,,,"A button can be assigned the attribute 'onclick=""sampleFunction();""""' which will call the function defined ""sampleFunction()"" in javascript when it is clicked.
+
+You will have to go back into the part where you dynamically insert all of the cards, and add this attribute to each button you create. It should look something like this ""<button ... onclick=""deleteCard('5135-5311-1234-1234');"">""
+
+When you click on this button, it's going to try to call a function called ""deleteCard"" with the given parameter. So we have to make this in javascript. It will look something like this:
+function deleteCard(cardNumber) {
+}
+
+Make sure it's getting called with the appropriate parameter by console.log-ing the cardNumber every time it is called, then click on the buttons with the dev console open and make sure you're seeing the right number.
+
+Inside of the deleteCard function, make an ajax call that calls DeleteCard.php. See login-ajax.js for how to send data to the call.
+
+You will know it works, when you refresh the page and the card is no longer there.
+
+BONUS POINTS: If the call is successful, remove the row out of the table. For this, you will need to go back into the function that creates the table, and add 'id=""cardNumber""' to each ""<tr>"" where cardNumber is the actual card number. Then inside the success function call ""$('#' + cardNumber).remove();"". This should make it so that if the card was successfully deleted, the row is removed from the html.
+",,card-management-ajax.js
+110706902407455,2016-04-10,2016-04-11,2016-04-11,"Add ""Add Card"" Functionality",,,,"Now that you know how to send data with the ajax call, add an ""onclick"" listener to the Add Card button on the page that calls a function you will create (""addCard();"").
+
+Inside of this function, you will have to structure the ajax call to have all the necessary parameters. You can pull these from the html with the following selector:
+$('input:text[name=username]').val()
+
+That selector gets a text input box with the name ""username"" and returns the value the user has entered. You will want to do this for card number, card type, and expiration date. Put all of that into an array, send that array to the api call, if success you will want to delete the data the user entered into the boxes.
+
+BONUS POINTS: Add that row directly to the table. You might want to refactor and make a function that takes 3 parameters, and solely adds that row to the table, then call this function in both the table population function, and now in this function. For 0 bonus points: force refresh the page so that it shows up on it's own. (The javascript call for this is ""location.reload();"")",,card-management-ajax.js
+110706902407458,2016-04-10,2016-04-11,2016-04-11,Error Handling,,,,"Create an error handling function that will display to the user when something went wrong. You will want to make an empty div at the top of the card_management.html page with an id that you can refer to.
+
+On that function call, append to that div a dismissable alert where the text is given as the parameter. (http://getbootstrap.com/components/#alerts)
+",,card-management-ajax.js
+101379149691054,2016-03-15,2016-03-20,2016-03-20,Build Leave Review Page Skeleton,Queen Nikki,2016-03-20,,,#90's Kids R Us,
+101379149691056,2016-03-15,,2016-03-15,Textbox for Typing Review,,,,,,Build Leave Review Page Skeleton
+101379149691058,2016-03-15,,2016-03-15,A way to enter stars (1-5),,,,,,Build Leave Review Page Skeleton
+101379149691060,2016-03-15,,2016-03-15,Submit Button,,,,,,Build Leave Review Page Skeleton
+101379149691062,2016-03-15,2016-03-20,2016-03-20,Build Log In Page Skeleton,Queen Nikki,2016-03-20,,,#90's Kids R Us,
+101379149691072,2016-03-15,2016-03-20,2016-03-20,Fix AJAX Calls to Call the right location no matter what machine,Drew Lopreiato,2016-03-20,,Maybe create another config file but for javascript and include it in every javascript file?,#90's Kids R Us,
+101379149691018,2016-03-15,2016-03-17,2016-03-17,Build Login API Call,Mikayla Jones,2016-03-20,,"Takes in 2 parameters by POST: username, password
+
+Returns a boolean variable (in json) that is true if successful, or false if unsuccessful.
+
+Looks up the user table to see if a user with that password exists
+If so, sets the variable ""$_SESSION['username']"" to the username
+
+Note: Be sure to start_session();",#90's Kids R Us,
+101379149691066,2016-03-15,2016-03-22,2016-03-22,Build Get Product Information API Call,Lauren Bosssauce,2016-03-22,,"Takes a GET item_id parameter, and returns all of the information we have on this item, include both bid and purchase information (in json).
+",#90's Kids R Us,
+101379149691068,2016-03-15,2016-03-16,2016-03-16,Build Create Review API Call,Charles Bevington,2016-03-20,,"Takes 3 POST parameters: item_id, star_rating, description, and inserts it into the ratings table. Returns a boolean variable that is true on success. If there was a failure, it will return the error, so the only reason why it returns anything is to keep front end code a bit neater.",#90's Kids R Us,
+101379149691070,2016-03-15,2016-03-16,2016-03-16,Build Get Reviews API Call,Charles Bevington,2016-03-20,,"Takes 1 GET parameter: item_id, and returns all of the ratings/reviews for this item.",#90's Kids R Us,
+101908934537508,2016-03-16,2016-03-18,2016-03-18,Build Registration API Call,Mikayla Jones,,,"Takes 8 POST parameters: username, password, email, name, phone_number, age, gender, annual_income
+
+Inserts this user data into the registered_users table
+
+Returns a boolean that is true if success. If it fails, it should output the error message using the SendSingleError function.",#90's Kids R Us,
+101908934537510,2016-03-16,2016-03-18,2016-03-18,Build Get User Info API Call,Mikayla Jones,,,"Takes 1 GET parameter: username
+
+returns an associative array that contains the user's gender, age, annual_income, email, name, and phone number (associate array being that the index is the name of the field)
+",#90's Kids R Us,
+102833357599550,2016-03-18,2016-03-20,2016-03-20,Build Get Active User Info API Call,Mikayla Jones,,,"Takes 0 parameters
+
+Returns the name and the email of the user currently logged in (look this up from the session data). Returns false if a user is not logged in",#90's Kids R Us,
+102833357599552,2016-03-18,2016-03-23,2016-03-23,GetCategories.php,Mikayla Jones,,,"""GetCategories.php""
+Takes 0 Parameters:
+
+Returns all of the categories available (name, id, and parent id) in an array. ",#90's Kids R Us,
+102833357599554,2016-03-18,2016-03-23,2016-03-23,GetItems.php,Mikayla Jones,,,"""GetItems.php""
+Takes 1 Optional Parameter: cateogory_id
+
+Returns all of the items in the database (id, description, location, category) unless the category_id is specified. Then it'll return only items under that category.",#90's Kids R Us,
+104023994542470,2016-03-22,2016-03-29,2016-03-29,Rent.php,Mikayla Jones,,,"The api call that is made when someone makes a rental.
+
+The username should be pulled from the active user, the with item and serial_number in rentables should have it's on_shelf set to 0. A new rent transaction should be created in the rental_transactions table.
+
+Parameters: item_id, serial_number, address_id, card_number
+Return: True on success, Error on Failure
+",#90's Kids R Us,
+104023994542472,2016-03-22,2016-04-13,2016-04-13,Adjust DB,Drew Lopreiato,2016-03-25,,,,Rent.php
+105997905540938,2016-03-29,2016-04-09,2016-04-09,add address_id to rental_transactions,Mikayla Jones,,,,,Rent.php
+104023994542476,2016-03-22,2016-04-05,2016-04-05,ReturnRental.php,Mikayla Jones,,,"The api call that is made when someone successfully returns the item.
+
+Be sure that the person marking this item as returned is the SELLER of the item. When it's returned, mark it's on_shelf to 1, check against the return_date, and if it's later than that, add the price_listing to the seller's balance due.
+
+Parameters: item_id, serial_number
+Return: True on success, Error on Failure
+",#90's Kids R Us,
+104023994542478,2016-03-22,2016-04-13,2016-04-13,Fix the DB for this one too,Drew Lopreiato,,,,,ReturnRental.php
+104023994542481,2016-03-22,2016-04-04,2016-04-04,GetUserBadges.php,Mikayla Jones,,,"The api call to see a user's achieved badges.
+
+This includes partial completions as well. Go through the badge_progresses table, finding all the entries that match the active user's username. Join this table with the badges table and return everything.
+
+Parameter: username
+Return Value: array of all the badges this user has earned",#90's Kids R Us,
+104023994542483,2016-03-22,2016-03-23,2016-03-23,GetAllBadges.php,Mikayla Jones,,,"The api call to see all available badges.
+
+Return everything in the badges table.
+
+Parameters: None
+Return: Everything",#90's Kids R Us,
+104023994542489,2016-03-22,2016-04-12,2016-04-12,Purchase.php,Lauren Bosssauce,,,"The api call that allows a user to make a purchase.
+
+This takes the active user's username, and all of the relevant information, and places an entry in sales. Enter the price listing into the seller's balance_due. (sale_id should be auto_incrementing)
+
+Parameters: item_id, amount, address_id, card_number
+Return: True if successful, the Error otherwise
+",#90's Kids R Us,
+108244833626436,2016-04-04,2016-04-13,2016-04-13,,Drew Lopreiato,,,"Could one of you review Purchase.php when you get a chance? I think I've done it correctly.
+",,Purchase.php
+108244833626438,2016-04-04,,2016-04-04,,,,,,,Purchase.php
+104023994542495,2016-03-22,2016-04-05,2016-04-05,GetTransactions.php,Mikayla Jones,,,"This API call returns all of the transactions for this user, including bids, purchases, and rentals.
+
+Parameters:
+Return: array containing all purchase information, concatenated to an array containing all rental information",#90's Kids R Us,
+106037099568735,2016-03-29,,2016-03-29,,,,,,,GetTransactions.php
+104375820005504,2016-03-23,2016-04-04,2016-04-04,GetCategoryBackTree.php,Mikayla Jones,,,"This is the API call used to display the bread crumbs like thing at the top of a page that shows the tree of categories this item is in.
+
+Should go through, and return an array of the category names in order from most general to most specific.
+
+Parameters: category_id
+Return: array of category_id's and corresponding names
+",#90's Kids R Us,
+104749902648236,2016-03-24,2016-03-24,2016-03-24,AddAddress.php,Mikayla Jones,,,"This API call is used when the user tries to add a new address.
+
+Adds an address for the active user.
+
+Parameters: shipping_name, zip_code, state, city, street
+Return: True for success, the error otherwise",#90's Kids R Us,
+104749902648238,2016-03-24,2016-03-24,2016-03-24,GetAddresses.php,Mikayla Jones,,,"This API call is used to show the user what Address are available to them.
+
+This must pull all of the Addresses made by the active user and return relevant information.
+
+Parameters: None
+Return: Array of address information (everything from addresses table except username)
+",#90's Kids R Us,
+104749902648240,2016-03-24,2016-03-24,2016-03-24,DeleteAddress.php,Mikayla Jones,,,"This API call will be used to allow a user to delete an address that they have saved.
+
+Be sure to restrict this to the active user (someone shouldn't be allowed to delete an address that belongs to someone else).
+
+Parameters: address_id
+Return: true on success, the error otherwise
+",#90's Kids R Us,
+104749902648242,2016-03-24,2016-03-24,2016-03-24,GetSeller.php,Mikayla Jones,,,"This API call will be used to display the seller info on the seller profile page.
+
+Parameters: username
+Return: name, address, point_of_contact, phone
+",#90's Kids R Us,
+104375820005509,2016-03-23,2016-03-24,2016-03-24,GetCards.php,Mikayla Jones,,,"This is the API call that returns this user's credit cards.
+
+This will return the cards that the active user has saved.
+
+Parameters: None
+Return: Array of all card information for all cards for this active user",#90's Kids R Us,
+104375820005511,2016-03-23,2016-03-24,2016-03-24,AddCard.php,Mikayla Jones,,,"This API call will add a card to the active user's card list.
+
+Parameters: exp_date, type, number
+Return: True on success, the error otherwise",#90's Kids R Us,
+104375820005513,2016-03-23,2016-03-24,2016-03-24,DeleteCard.php,Mikayla Jones,,,"The API call to delete a card that belongs to the active user.
+
+Parameters: card_number
+Return: True on success, error otherwise",#90's Kids R Us,
+104749902648248,2016-03-24,2016-04-05,2016-04-05,PostItemSale.php,Charles Bevington,,,"This API call will be used to allow sellers to actually post a sale on the item they have created.
+
+Make sure that this item belongs to the active user.
+
+Parameters: item_id, listed_price, number_in_stock
+Return: True on success, the error otherwise
+",#90's Kids R Us,
+104749902648250,2016-03-24,2016-04-05,2016-04-05,PostItemAuction.php,Charles Bevington,,,"This API call will be used to allow the seller to post an auction listing for their item.
+
+**DO NOT DO UNTIL THE AUCTION STUFF HAS BEEN SORTED OUT**
+
+Make sure the item being put up for auction belongs to the active user.
+
+Parameters: item_id, reserve_price, number_in_stock
+Return: true on success, the error otherwise",#90's Kids R Us,
+104749902648252,2016-03-24,2016-04-05,2016-04-05,PostItemRental.php,Charles Bevington,,,"This API call will be used to allow a seller to post a rental for their item.
+
+**DO NOT DO UNTIL THE RENTAL SYSTEM HAS BEEN FIXED**
+
+Make sure this item belongs to the active user.
+
+Parameters: item_id, serial_number, rental_time_unit, price_listing
+Return: true on success, the error otherwise",#90's Kids R Us,
+104749902648254,2016-03-24,2016-03-25,2016-03-25,GetReviewStats.php,Mikayla Jones,,,"This API call will be used to return the meta data about the ratings for a given item.
+
+The five_star through one_star should represent how many ratings of that number it had received.
+
+Parameters: item_id
+Return: number_of_ratings, avg_rating, five_star, four_star, three_star, two_star, one_star
+",#90's Kids R Us,
